@@ -54,6 +54,7 @@ function RegisterPage(props) {
   
   return (
     <>
+    <h1>hello</h1>
       <form className="align-center" onSubmit={handleSubmit}>
 			<h3 className='text-center'>Welcome</h3>
 			<div className='reg-div mt-4 mb-2'>
