@@ -61,7 +61,7 @@ function RegisterPage(props) {
 					
 					{/* firstname  */}
 					<div className="form-group position-relative has-icon-left mb-2">
-						<label htmlFor="" className="log-input-title">First Name sd:</label>
+						<label htmlFor="" className="log-input-title">First Name:</label>
 						
 						<input type="text" 
 							className="form-control form-control-xl mt-2" 
