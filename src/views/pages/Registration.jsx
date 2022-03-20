@@ -21,10 +21,7 @@ function RegisterPage(props) {
 
     const navigate = useNavigate()
 	
-   function log(){
-    alert("hello");
-    console.log("hello");
-   }
+
 
 	function register() {
 	console.log("hello");
@@ -64,7 +61,7 @@ function RegisterPage(props) {
 					
 					{/* firstname  */}
 					<div className="form-group position-relative has-icon-left mb-2">
-						<label htmlFor="" className="log-input-title">First Name :</label>
+						<label htmlFor="" className="log-input-title">First Name sd:</label>
 						
 						<input type="text" 
 							className="form-control form-control-xl mt-2" 
@@ -142,7 +139,7 @@ function RegisterPage(props) {
 					<div className="errors">{!inputfocus.password && errors.password}</div>
 				</div>
 			</div>
-			 <button onClick={log}>regis</button>
+			 
 			<button className="btn btns mt-3">Continue</button>
 			<div className="mt-3">Already have an account? goto <Link className="clr-p" to="/login">Sign In</Link></div>
 		</form>
