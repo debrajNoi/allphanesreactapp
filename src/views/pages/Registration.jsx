@@ -21,6 +21,11 @@ function RegisterPage(props) {
 
     const navigate = useNavigate()
 	
+   function log(){
+    alert("hello");
+    console.log("hello");
+   }
+
 	function register() {
 	console.log("hello");
 		console.log('No errors, submit callback called!')
@@ -137,8 +142,8 @@ function RegisterPage(props) {
 					<div className="errors">{!inputfocus.password && errors.password}</div>
 				</div>
 			</div>
-			
-			<button className="btn btns mt-3" onClick={register}>Continue</button>
+			 <button onClick={log}>regis</button>
+			<button className="btn btns mt-3">Continue</button>
 			<div className="mt-3">Already have an account? goto <Link className="clr-p" to="/login">Sign In</Link></div>
 		</form>
     </>
