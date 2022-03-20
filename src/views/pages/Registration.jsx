@@ -22,6 +22,7 @@ function RegisterPage(props) {
     const navigate = useNavigate()
 	
 	function register() {
+	console.log("hello");
 		console.log('No errors, submit callback called!')
 		const data = {
 			"FirstName": values.firstName,
@@ -137,7 +138,7 @@ function RegisterPage(props) {
 				</div>
 			</div>
 			
-			<button className="btn btns mt-3">Continue</button>
+			<button className="btn btns mt-3" onClick={register}>Continue</button>
 			<div className="mt-3">Already have an account? goto <Link className="clr-p" to="/login">Sign In</Link></div>
 		</form>
     </>
