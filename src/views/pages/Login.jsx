@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import Gmail from '../../assets/web_img/gmail.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import useForm from '../../useForm'
 import validate from '../../FormValidationRule'
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { config } from '../../constant'
 const getRegisterUrl = config.url.API_URL+'/login'
@@ -39,8 +38,8 @@ export default function Login(props) {
 				setToken(token)
 				localStorage.setItem('token', token)
                 // alert(response.data.message)
-                alert('login successfull')
-                navigate("/otp-verification")
+                // alert('login successfull')
+                navigate("/profile")
 			}else{
 				const errorMessage = response.data.message
                 console.log('errmsg =>',errorMessage)

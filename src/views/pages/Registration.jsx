@@ -3,12 +3,11 @@ import useForm from "../../useForm"
 import validate from '../../FormValidationRule'
 import { Link, useNavigate,useLocation } from "react-router-dom"
 import axios from "axios"
-
 import { config } from '../../constant'
 const getRegisterUrl = config.url.API_URL+"/allphanuser"
 
 
-function RegisterPage(props) {
+function Registration(props) {
 	const [inputfocus, setInputfocus] = useState({})
 	const [token, setToken] = useState()
 	
@@ -21,10 +20,7 @@ function RegisterPage(props) {
 
     const navigate = useNavigate()
 	
-
-
 	function register() {
-	console.log("hello");
 		console.log('No errors, submit callback called!')
 		const data = {
 			"FirstName": values.firstName,
@@ -37,14 +33,12 @@ function RegisterPage(props) {
 		axios.post(getRegisterUrl,data)
 		.then((response) => {			
 			if(response.data.status === 200){
-				console.log(response)
 				const token = response.data.token
 				setToken(token)
                 localStorage.setItem('token',token)
                 navigate("/otp-verification")
 			}else{
 				const errorMessage = response.data.message
-                console.log('errmsg =>',errorMessage)
 			}
 		})
 		.catch(err => {
@@ -54,7 +48,6 @@ function RegisterPage(props) {
   
   return (
     <>
-    <h1>hello</h1>
       <form className="align-center" onSubmit={handleSubmit}>
 			<h3 className='text-center'>Welcome</h3>
 			<div className='reg-div mt-4 mb-2'>
@@ -62,7 +55,7 @@ function RegisterPage(props) {
 					
 					{/* firstname  */}
 					<div className="form-group position-relative has-icon-left mb-2">
-						<label htmlFor="" className="log-input-title">First Name:</label>
+						<label htmlFor="" className="log-input-title">First Name :</label>
 						
 						<input type="text" 
 							className="form-control form-control-xl mt-2" 
@@ -140,7 +133,7 @@ function RegisterPage(props) {
 					<div className="errors">{!inputfocus.password && errors.password}</div>
 				</div>
 			</div>
-			 
+			
 			<button className="btn btns mt-3">Continue</button>
 			<div className="mt-3">Already have an account? goto <Link className="clr-p" to="/login">Sign In</Link></div>
 		</form>
@@ -148,4 +141,4 @@ function RegisterPage(props) {
   )
 }
 
-export default RegisterPage
+export default Registration

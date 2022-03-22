@@ -1,20 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
-import Layout from "./views/pages/Layout"
-
-
 // css 
 import './assets/css/pages/auth.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './assets/css/pages/profile.css'
+import './assets/css/navbar.css'
+// pages 
+import Layout from "./views/pages/Layout"
+import Profile from './views/pages/Profile';
+import Registration from './views/pages/Registration';
+import OtpVerification from './views/pages/OtpVerification';
+import Login from './views/pages/Login';
 
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/" element={<Navigate replace to="/registration" />} />
-      <Route path="/otp-verification" element={<Layout />} />
-      <Route path="/registration" element={<Layout />} />
-      <Route path="/login" element={<Layout />} />
+      <Route path="/" element={<Layout />} >
+        <Route index element={<Login />}/>
+        <Route path="otp-verification" element={<OtpVerification />} />
+        <Route path="registration" element={<Registration />} />
+        <Route path="login" element={<Login />} />
+      </Route>
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   </Router>,
   document.getElementById('root')
