@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { config } from './constant'
-let getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/checkunique";
+// let getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/checkunique";
 let errors1 = {}
 export default function validate(values,callback) {
 	const checkUnique = (data,tar) =>{
         //console.log('rega =>', tar.name)
-		axios.post(unique, data)
+		axios.post(data)
 		.then((res) =>{
 			if(res.data.status === 401) return errors1[tar.target] = res.data.message 
 				
@@ -66,9 +66,9 @@ export default function validate(values,callback) {
         mobileValidationIndian(values.phone)	
 	}
 
-    if(callback.name === 'reg'){
-        checkUnique(values, callback)
-    }
+    // if(callback.name === 'reg'){
+    //     checkUnique(values, callback)
+    // }
 
     return errors1
 };

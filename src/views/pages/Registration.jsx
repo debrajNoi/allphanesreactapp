@@ -4,7 +4,7 @@ import validate from '../../FormValidationRule'
 import { Link, useNavigate,useLocation } from "react-router-dom"
 import axios from "axios"
 import { config } from '../../constant'
-let getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/allphanuser";
+let getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/allphanuser';
 
 
 function Registration(props) {
