@@ -6,7 +6,7 @@ import useForm from '../../useForm'
 import validate from '../../FormValidationRule'
 import axios from 'axios'
 import { config } from '../../constant'
-const getRegisterUrl = config.url.API_URL+'/login'
+const getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/login'
 
 // import 'react-phone-number-input/style.css'
 // import PhoneInput from 'react-phone-number-input'
@@ -34,8 +34,8 @@ export default function Login(props) {
 		.then((response) => {
 			if(response.data.status === 200){
                 console.log(response)
-				const token = response.data.token
-				setToken(token)
+				const tokens = response.data.token
+				setToken(tokens)
 				localStorage.setItem('token', token)
                 // alert(response.data.message)
                 // alert('login successfull')
@@ -100,7 +100,7 @@ export default function Login(props) {
                 </div>
                 <div>OR</div>
                 <div className='my-3'>
-                    <img src={Gmail}></img>
+                    <img src={Gmail} alt="log in"></img>
                 </div>
                 <button className="btn btns mt-2">Continue</button>
                 <div className='mt-4'>Don't Have an Account? <Link className='clr-p' to="/registration">Register</Link></div>

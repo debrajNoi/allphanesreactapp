@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { config } from './constant'
-const unique = config.url.API_URL+"/checkunique"
+const getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/checkunique"
 let errors1 = {}
 export default function validate(values,callback) {
 	const checkUnique = (data,tar) =>{
-        console.log('rega =>', tar.name)
+        //console.log('rega =>', tar.name)
 		axios.post(unique, data)
 		.then((res) =>{
 			if(res.data.status === 401) return errors1[tar.target] = res.data.message 
@@ -63,15 +63,6 @@ export default function validate(values,callback) {
         nameValidate(values.firstName, 'firstName', 'First name')
         nameValidate(values.lastName, 'lastName', 'Last name')
         emailValidate(values.email)
-        let email = {
-            'Email' : values.email
-        }
-        checkUnique(email, {'name':'redd',target: 'email'})
-		passwordValidate(values.password)
-        let phone = {
-            'PhoneNo' : values.phone
-        }
-        checkUnique(phone, {'target' : 'phone'})
         mobileValidationIndian(values.phone)	
 	}
 

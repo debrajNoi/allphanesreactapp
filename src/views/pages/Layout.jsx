@@ -5,17 +5,8 @@ import { useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 
 
-export default function Layout(props){
+export default function Layout(){
     const location = useLocation()
-    const [data, setData] = useState({})
-
-    const childToParent = (childdata) => {
-        setData(childdata)
-        console.log('email =>',childdata)
-    }
-
-    console.log(location.pathname)
-
     return(
         <div className="Login">
             <div className='container'>

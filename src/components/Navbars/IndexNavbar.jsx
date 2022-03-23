@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from 'react'
+import { Link } from "react-router-dom";
 
 // import { Link } from "react-router-dom";
 import logo from '../../assets/web_img/main_logo.png'
@@ -18,10 +19,9 @@ function IndexNavbar() {
 		<header id="header" className="index-header">
 			<div className="nav-main">
 				<div className="logo-top">
-					<img src={logo} alt="not found" />
-					{/* <Link to="/profile"> */}
-						
-					{/* </Link> */}
+					<Link to="/profile">
+						<img src={logo} alt="not found" />	
+					</Link>
 				</div>
 
 				<div className="nav-right">

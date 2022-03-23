@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import Gmail from '../../assets/web_img/gmail.png'
 import axios from "axios"
 import { config } from '../../constant'
-const getRegisterUrl = config.url.API_URL+'/otpverification'
+const getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/otpverification'
 // import { useEffect } from "react"
 
 export default function OtpVerification(props){
