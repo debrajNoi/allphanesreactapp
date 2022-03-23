@@ -4,7 +4,7 @@ import validate from '../../FormValidationRule'
 import { Link, useNavigate,useLocation } from "react-router-dom"
 import axios from "axios"
 import { config } from '../../constant'
-let getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/allphanuser';
+const getRegisterUrl = config.url.API_URL+"AllphanesuserAdd/allphanuser"
 
 
 function Registration(props) {
@@ -33,7 +33,8 @@ function Registration(props) {
 		axios.post(getRegisterUrl,data)
 		.then((response) => {			
 			if(response.data.status === 200){
-				const token = response.data.token
+				// const token = response.data.id
+				const token = "dfsdfdfdfsdggd"
 				setToken(token)
                 localStorage.setItem('token',token)
                 navigate("/otp-verification")
@@ -49,7 +50,7 @@ function Registration(props) {
   return (
     <>
       <form className="align-center" onSubmit={handleSubmit}>
-			<h3 className='text-center'>Welcome</h3>
+			<h3 className='text-center mtt-150'>Welcome</h3>
 			<div className='reg-div mt-4 mb-2'>
 				<div className="name-div">
 					

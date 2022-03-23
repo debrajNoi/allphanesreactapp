@@ -14,9 +14,9 @@
 }
 
 .youtube_frame {
-    margin-top: 40px;
-    max-height: 350px;
-    border-radius: 15px;
+    margin-top: 20px;
+    max-height: 370px;
+    border-radius: 10px;
 }
 
 .C_flags img {
@@ -202,9 +202,6 @@ img {
     .reg-div{
         padding: 0 15px;
     }
-    .hxz-100{
-        height: auto;
-    }
     .otp-fields input{
         height: 35px;
         width: 35px;
@@ -217,5 +214,15 @@ img {
     }
     .p_4{
         padding: 20px 0;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .youtube_frame{
+        max-width: 600px;
+        max-height: 600px;
+    }
+    .mtt-150{
+        margin-top: 150px;
     }
 }

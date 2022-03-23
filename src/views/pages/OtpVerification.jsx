@@ -1,14 +1,17 @@
 import React, {useState} from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, Navigate } from "react-router-dom"
 import Gmail from '../../assets/web_img/gmail.png'
 import axios from "axios"
 import { config } from '../../constant'
-const getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/otpverification'
+const getRegisterUrl = config.url.API_URL+'AllphanesuserAdd/otpverification'
 // import { useEffect } from "react"
 
 export default function OtpVerification(props){
     const [otp, setOtp] = useState(new Array(6).fill(""))
     const navigate = useNavigate()
+
+    if(!localStorage.getItem('token')) return <Navigate to="/login" />
+    
 
     const handleChange = (element, index) => {
         if (isNaN(element.value)) return false

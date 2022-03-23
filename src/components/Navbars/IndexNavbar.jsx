@@ -1,20 +1,24 @@
 import React from "react";
 import { useState } from 'react'
-import { Link } from "react-router-dom";
-
-// import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from '../../assets/web_img/main_logo.png'
 
 
 function IndexNavbar() {
 	const [isActive, setActive] = useState(false);
-	
+	const [auth, setAuth] = useState(false)
+	const navigate = useNavigate()
 	const toggleClass = () => {
 		setActive(!isActive);
 	};
 
-	// className={isActive ? 'your_className': null} onClick={toggleClass} 	
+	const logout = e => {
+		localStorage.clear()
+		navigate("/login")
+	}
 
+    if(!localStorage.getItem('token')) setAuth(!auth)
+	
 	return (
 		<header id="header" className="index-header">
 			<div className="nav-main">
@@ -33,6 +37,7 @@ function IndexNavbar() {
 								<a className="nav-link" href={`${process.env.PUBLIC_URL}/login`} data-bs-toggle="dropdown">Sign in</a>                    
 							</li>
 							<li className="nav-item"><a className="nav-link" href={`${process.env.PUBLIC_URL}/registration`}>Sign up</a></li>
+							<li className="nav-item"><button className="btn btn-primary" onClick={logout}>Log Out</button></li>
 						</ul>
 					{/* </div> */}
 					<div className="nav-right">

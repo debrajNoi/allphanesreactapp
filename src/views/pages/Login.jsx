@@ -6,7 +6,7 @@ import useForm from '../../useForm'
 import validate from '../../FormValidationRule'
 import axios from 'axios'
 import { config } from '../../constant'
-const getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/login'
+const getRegisterUrl = config.url.API_URL+'AllphanesuserAdd/login'
 
 // import 'react-phone-number-input/style.css'
 // import PhoneInput from 'react-phone-number-input'
@@ -34,9 +34,9 @@ export default function Login(props) {
 		.then((response) => {
 			if(response.data.status === 200){
                 console.log(response)
-				const tokens = response.data.token
-				setToken(tokens)
-				localStorage.setItem('token', token)
+				// const tokens = response.data.token
+				// setToken(tokens)
+				localStorage.setItem('token', 'fdsjflddfdfdfdslfdj')
                 // alert(response.data.message)
                 // alert('login successfull')
                 navigate("/profile")
@@ -52,7 +52,7 @@ export default function Login(props) {
   
     return (
         <>
-            <form className='item-center' onSubmit={handleSubmit}>
+            <form className='items-center' onSubmit={handleSubmit}>
                 <h3 className='head'>Welcome</h3>
                 <div className='phone-tag mt-4 mb-2'>
                     <h6>Please enter your login details</h6>
@@ -88,13 +88,6 @@ export default function Login(props) {
                         />
                         <div className="errors">{!inputfocus.password && errors.password}</div>
                     </div>
-                   
-                    {/* <div className="valid">{!emailFocus && valid.email}</div> */}
-
-                    {/* <div className='phone my-4'>
-
-                        <PhoneInput defaultCountry="IN" value={value} onChange={setValue} placeholder="Enter phone number" />
-                    </div> */}
 
                     <div className='mt-2'>By continue you are agree to our <Link to="/terms" className='clr-p'>Terms of use</Link> & <Link className='clr-p' to="/privacy-policy">Privacy Policy</Link> </div>
                 </div>

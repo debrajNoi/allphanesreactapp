@@ -1,16 +1,5 @@
-import axios from 'axios'
-import { config } from './constant'
-// let getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/checkunique";
 let errors1 = {}
 export default function validate(values,callback) {
-	const checkUnique = (data,tar) =>{
-        //console.log('rega =>', tar.name)
-		axios.post(data)
-		.then((res) =>{
-			if(res.data.status === 401) return errors1[tar.target] = res.data.message 
-				
-		})
-	}
     // email validation 
     const emailValidate = data =>{
         if (!data) return errors1.email = 'Email address is required'
@@ -65,10 +54,6 @@ export default function validate(values,callback) {
         emailValidate(values.email)
         mobileValidationIndian(values.phone)	
 	}
-
-    // if(callback.name === 'reg'){
-    //     checkUnique(values, callback)
-    // }
 
     return errors1
 };

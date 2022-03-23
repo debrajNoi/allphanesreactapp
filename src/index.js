@@ -8,10 +8,10 @@ import './assets/css/pages/profile.css'
 import './assets/css/navbar.css'
 // pages 
 import Layout from "./views/pages/Layout"
-import Profile from './views/pages/Profile'
 import Registration from './views/pages/Registration'
 import OtpVerification from './views/pages/OtpVerification'
 import Login from './views/pages/Login'
+import ProfileLayout from './views/pages/ProfileLayout'
 // import PrivateOutlet from './_helpers/PrivateOutlet'
 
 ReactDOM.render(
@@ -27,7 +27,7 @@ ReactDOM.render(
       {/* <Route path="/*" element={<PrivateOutlet />} >
         <Route path="profile" element={<Profile />} />
       </Route> */}
-      <Route path="profile" element={<Profile />} />
+      <Route path="profile" element={<ProfileLayout />} />
       <Route path="*" element={<Notfound />} />
 
     </Routes>
@@ -36,7 +36,11 @@ ReactDOM.render(
 )
 
 function Notfound(){
-  return "not found"
+  return (
+    <>  
+      <h1>404 Page Not Found</h1>
+    </>
+  )
 }
 
 // If you want to start measuring performance in your app, pass a function
