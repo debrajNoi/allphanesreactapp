@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { config } from './constant'
-const getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/checkunique";
+let getRegisterUrl = config.url.API_URL+'/AllphanesuserAdd/checkunique";
 let errors1 = {}
 export default function validate(values,callback) {
 	const checkUnique = (data,tar) =>{
