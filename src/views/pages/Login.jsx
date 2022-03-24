@@ -88,11 +88,8 @@ export default function Login(props) {
                     </div>
 
                 </div>
-                <div>OR</div>
-                <div className='my-3'>
-                    <img src={Gmail} alt="log in"></img>
-                </div>
-                <button className="btn btns mt-2">Continue</button>
+        
+                <button className="btn btns mt-4">Continue</button>
                 <div className='mt-4'>Don't Have an Account? <Link className='clr-p' to="/registration">Register</Link></div>
             </form>
         </>         

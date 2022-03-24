@@ -8,9 +8,10 @@
     width: 100%;
 }
 
-/* .main_logo {
-    height: 147.91px; 
-} */
+.main_logo {
+    height: 130px; 
+    max-width: 500px;
+}
 .youtube-div{
     width: 500px;
     height: 500px;
@@ -221,17 +222,17 @@ img {
     .p_4{
         padding: 20px 0;
     }
-    .youtube_frame{
+    /* .youtube_frame{
        margin-bottom: 30px;  
-    }
+    } */
 }
 
 @media only screen and (min-width: 1400px) {
-    .youtube_frame{
+    /* .youtube_frame{
         max-width: 600px;
         max-height: 600px;
         
-    }
+    } */
     .mtt-150{
         margin-top: 150px;
     }
