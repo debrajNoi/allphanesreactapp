@@ -12,6 +12,7 @@ import Registration from './views/pages/Registration'
 import OtpVerification from './views/pages/OtpVerification'
 import Login from './views/pages/Login'
 import ProfileLayout from './views/pages/ProfileLayout'
+import Images from './views/images'
 // import PrivateOutlet from './_helpers/PrivateOutlet'
 
 ReactDOM.render(
@@ -29,6 +30,7 @@ ReactDOM.render(
       </Route> */}
       <Route path="profile" element={<ProfileLayout />} />
       <Route path="*" element={<Notfound />} />
+      <Route path="images" element={<Images />} />
 
     </Routes>
   </Router>,

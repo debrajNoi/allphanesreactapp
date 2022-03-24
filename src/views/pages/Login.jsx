@@ -34,11 +34,9 @@ export default function Login(props) {
 		.then((response) => {
 			if(response.data.status === 200){
                 console.log(response)
-				// const tokens = response.data.token
-				// setToken(tokens)
-				localStorage.setItem('token', 'fdsjflddfdfdfdslfdj')
-                // alert(response.data.message)
-                // alert('login successfull')
+				const tokens = response.data.id
+				setToken(tokens)
+				localStorage.setItem('token', token)
                 navigate("/profile")
 			}else{
 				const errorMessage = response.data.message
@@ -53,7 +51,7 @@ export default function Login(props) {
     return (
         <>
             <form className='items-center' onSubmit={handleSubmit}>
-                <h3 className='head'>Welcome</h3>
+                <h3 className=''>Welcome</h3>
                 <div className='phone-tag mt-4 mb-2'>
                     <h6>Please enter your login details</h6>
 
@@ -89,7 +87,6 @@ export default function Login(props) {
                         <div className="errors">{!inputfocus.password && errors.password}</div>
                     </div>
 
-                    <div className='mt-2'>By continue you are agree to our <Link to="/terms" className='clr-p'>Terms of use</Link> & <Link className='clr-p' to="/privacy-policy">Privacy Policy</Link> </div>
                 </div>
                 <div>OR</div>
                 <div className='my-3'>

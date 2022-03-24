@@ -1,3 +1,11 @@
+.err-msg{
+    background-color: rgb(233, 229, 229);
+    margin-top: 10px;
+    color: red;
+    font-weight: bold;
+    padding: 10px 30px;
+    width: 70%;
+}
 .bg-red {
     background-color: red !important;
 }
@@ -20,6 +28,7 @@
     background: #C4C4C4;
     display: flex;
     align-items: center;
+    height: 200px;
 }
 
 .profile-photo {
@@ -251,8 +260,12 @@ a {
     color: #000;
 }
 
+.view-post-img{
+    max-height: 320px;
+    overflow: hidden;
+}
+
 .view-post-img img {
-    max-height: 300px;
     max-width: 100%;
     background-size: contain;
 }
@@ -297,10 +310,12 @@ a {
     }
 }
 
-/* @media only screen and (max-width: 990px) {
-
+ @media only screen and (max-width: 990px) {
+    .trend-video {
+        max-height: 300px;
+    }
 }
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) { 
     
 } */
 /* @media only screen and (max-width: 600px) {
@@ -310,5 +325,11 @@ a {
     .com-sec img{
         height: 80px;
         min-width: 80px;
+    }
+}
+/* for more than 14 inch screen  */
+@media only screen and (min-width: 1400px) {
+    .view-post-img img{
+        max-height: 600px;
     }
 }
