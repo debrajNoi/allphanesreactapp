@@ -265,6 +265,13 @@ a {
     overflow: hidden;
 }
 
+.view-post-des{
+    display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .view-post-img img {
     max-width: 100%;
     background-size: contain;

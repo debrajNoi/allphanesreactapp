@@ -7,6 +7,7 @@ import validate from '../../FormValidationRule'
 import axios from 'axios'
 import { config } from '../../constant'
 const getRegisterUrl = config.url.API_URL+'AllphanesuserAdd/login'
+// const getRegisterUrl = "https://allphanesusernode.herokuapp.com/AllphanesuserAdd/login"
 
 // import 'react-phone-number-input/style.css'
 // import PhoneInput from 'react-phone-number-input'
@@ -19,7 +20,7 @@ export default function Login(props) {
 		handleChange,
 		handleSubmit,
 	} = useForm(login, validate, 'login')
-	const [token, setToken] = useState()
+	// const [token, setToken] = useState()
 
 
     const navigate = useNavigate()
@@ -35,8 +36,8 @@ export default function Login(props) {
 			if(response.data.status === 200){
                 console.log(response)
 				const tokens = response.data.id
-				setToken(tokens)
-				localStorage.setItem('token', token)
+				localStorage.setItem('token', tokens)
+                console.log(tokens)
                 navigate("/profile")
 			}else{
 				const errorMessage = response.data.message
@@ -88,8 +89,11 @@ export default function Login(props) {
                     </div>
 
                 </div>
-        
-                <button className="btn btns mt-4">Continue</button>
+                <div>OR</div>
+                <div className='my-3'>
+                    <img src={Gmail} alt="log in"></img>
+                </div>
+                <button className="btn btns mt-2">Continue</button>
                 <div className='mt-4'>Don't Have an Account? <Link className='clr-p' to="/registration">Register</Link></div>
             </form>
         </>         

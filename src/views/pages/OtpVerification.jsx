@@ -53,6 +53,7 @@ export default function OtpVerification(props){
                     <div className='w-300 my-4 bg-w p_4'>
                         <div className="otp-fields">
                             {otp.map((data, index) => {
+                                console.log(data)
                                 return (
                                     <>
                                         <input
