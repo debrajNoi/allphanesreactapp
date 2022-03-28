@@ -1,14 +1,14 @@
 // Constants.js
 const prod = {
  url: {
-  API_URL: 'https://allphanesusernode.herokuapp.com/'
+  API_URL: 'https://allphanesusernode.herokuapp.com/api/'
  }
 }
 
 
 const dev = {
  url: {
-  API_URL: 'http://localhost:8080/'
+  API_URL: 'http://localhost:8080/api/'
  }
 }
 export const config = process.env.NODE_ENV === 'development' ? dev : prod
