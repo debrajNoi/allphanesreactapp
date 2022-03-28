@@ -11,13 +11,13 @@ import goat from '../../assets/web_img/goat.png'
 
 import axios from "axios"
 import { config } from '../../constant'
-const postTexts = "https://allphanesusernode.herokuapp.com/Allphanesuserpost/allphanuserposttitle"
-const getPosts = "https://allphanesusernode.herokuapp.com/Allphanesuserpost/posts";
+
+const createPost = config.url.API_URL+'posts/create'
+const getPosts = config.url.API_URL+'posts/'
 
 function Profile() {
     const [postdesc, setPostDesc] = useState()
     const [posts, setPosts] = useState([])
-
 
     const getAllPosts = async url => {
         const response = await fetch(url)
@@ -27,7 +27,7 @@ function Profile() {
 
     useEffect(() => {
         getAllPosts(getPosts)
-    },[posts])
+    },[])
 
     const handleChange = e => {
         setPostDesc(e.target.value)
@@ -36,21 +36,19 @@ function Profile() {
     const handleSubmit = e =>{
         e.preventDefault()
         const id = localStorage.getItem('token')
-        console.log(id)
         let data = {
-            'id' : id,
-            'PostTitle' : 'testing',
-            'PostDescription' : postdesc
+            'referenceUserId' : id,
+            'postTitle' : 'testing',
+            'postDescription' : postdesc
         }
-        axios.post(postTexts,data)
-        .then((response) => {
-            console.table(response.data)            
-        })
-        .catch(err => {
-            console.log('error=>',err)
-        })
-
-        // console.log(getAllPosts(getPosts))
+        axios.post(createPost,data)
+		.then((response) => {
+            setPostDesc('')
+            getAllPosts(getPosts)
+		})
+		.catch(err => {
+		    console.log('error=>',err)
+		})
     }
   
     return (
@@ -100,13 +98,13 @@ function Profile() {
                             <Link to="/profile" className="posted-user">
                                 <div className='posted-user-d'>
                                     <img src={profilePhoto1} alt="profile" className='posted-profile' />
-                                    <div className="post-user-name">Boton Roy</div>
+                                    <div className="post-user-name">{item.user_info[0].firstName+ ' ' + item.user_info[0].lastName}</div>
                                 </div>                                   
                             </Link>
                         </div>
                         
                         <div className="view-post-des mt-2">
-                            {item.PostDescription}
+                            {item.postDescription}
                         </div>
                     </div>
                 )

@@ -4,16 +4,9 @@ import profilePhoto1 from '../../assets/web_img/pro_3.webp'
 
 
 
-function LeftNavbar(props) {
-  // const logout = () => {
-  //  window.localStorage.clear()
-  //  window.location.href = process.env.PUBLIC_URL+"/login"
-  // }
-  
-  // const [toggle,setToggle]=useState(0)
-  
-  return (
-    <section id="leftBar">
+function LeftNavbar(props) {	
+	return (
+		<section id="leftBar">
                             <div className="left-sec-1">
                                 <div className="left-sec-con"><Link to="/profile">Your free content Events</Link></div>
                                 <div className="left-sec-con"><Link to="/profile">Friends</Link></div>
@@ -53,7 +46,7 @@ function LeftNavbar(props) {
                                 
                             </div>
                         </section>
-  )
-}     
-       
+	)
+}			
+			 
 export default LeftNavbar

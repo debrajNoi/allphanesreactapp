@@ -6,7 +6,7 @@ import useForm from '../../useForm'
 import validate from '../../FormValidationRule'
 import axios from 'axios'
 import { config } from '../../constant'
-const getRegisterUrl = config.url.API_URL+'AllphanesuserAdd/login'
+const getRegisterUrl = config.url.API_URL+'users/login'
 // const getRegisterUrl = "https://allphanesusernode.herokuapp.com/AllphanesuserAdd/login"
 
 // import 'react-phone-number-input/style.css'
@@ -26,18 +26,14 @@ export default function Login(props) {
     const navigate = useNavigate()
 
     function login(){
-        const data = {
-            "Email": values.email,
-            "Password":values.password
-        }
-        console.log('data=>',data)
-        axios.post(getRegisterUrl,data)
+
+        axios.post(getRegisterUrl,values)
 		.then((response) => {
 			if(response.data.status === 200){
                 console.log(response)
 				const tokens = response.data.id
 				localStorage.setItem('token', tokens)
-                console.log(tokens)
+                // console.log(tokens)
                 navigate("/profile")
 			}else{
 				const errorMessage = response.data.message
@@ -54,7 +50,6 @@ export default function Login(props) {
             <form className='items-center' onSubmit={handleSubmit}>
                 <h3 className=''>Welcome</h3>
                 <div className='phone-tag mt-4 mb-2'>
-                    <h6>Please enter your login details</h6>
 
                     {/* email  */}
                     <div className="login-form mt-4">
@@ -89,9 +84,7 @@ export default function Login(props) {
                     </div>
 
                 </div>
-               
-               
-                <button className="btn btns mt-2">Continue</button>
+                <button className="btn btns mt-4">Continue</button>
                 <div className='mt-4'>Don't Have an Account? <Link className='clr-p' to="/registration">Register</Link></div>
             </form>
         </>         

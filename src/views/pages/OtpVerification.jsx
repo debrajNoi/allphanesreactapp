@@ -3,7 +3,7 @@ import { Link, useNavigate, Navigate } from "react-router-dom"
 import Gmail from '../../assets/web_img/gmail.png'
 import axios from "axios"
 import { config } from '../../constant'
-const getRegisterUrl = config.url.API_URL+'AllphanesuserAdd/otpverification'
+const getRegisterUrl = config.url.API_URL+'users/otpverification'
 // import { useEffect } from "react"
 
 export default function OtpVerification(props){
@@ -27,17 +27,21 @@ export default function OtpVerification(props){
         e.preventDefault()
         let token = localStorage.getItem('token')
         let data = {
-            "userToken":token,
+            "id":token,
             "otp" : otp.join("")
         }
         console.log('brodata =>',data)
         axios.post(getRegisterUrl,data)
 		.then((response) => {
+            console.log(response)
 			if(!response.data.status === 200){
                 const errorMessage = response.data.message
                 return console.log('errmsg =>',errorMessage)
 			}
+            // if(response.data.status === 200) return navigate("/profile")
+            
             return alert(response.data.message)
+            // return navigate("/profile")
 		})
 		.catch(err => {
 		    console.log('error=>',err)

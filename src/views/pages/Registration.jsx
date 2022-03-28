@@ -4,7 +4,7 @@ import validate from '../../FormValidationRule'
 import { Link, useNavigate,useLocation } from "react-router-dom"
 import axios from "axios"
 import { config } from '../../constant'
-const getRegisterUrl = config.url.API_URL+"AllphanesuserAdd/allphanuser"
+const getRegisterUrl = config.url.API_URL+"users/create"
 
 
 function Registration(props) {
@@ -23,19 +23,11 @@ function Registration(props) {
 	
 	function register() {
 		console.log('No errors, submit callback called!')
-		const data = {
-			"FirstName": values.firstName,
-			"LastName": values.lastName,
-			"Email": values.email,
-			"PhoneNo": values.phone,
-			"Password": values.password
-		}
-		
-		axios.post(getRegisterUrl,data)
+	
+		axios.post(getRegisterUrl,values)
 		.then((response) => {
 			console.table(response.data)			
 			if(response.data.status === 200){
-				
 				const token = response.data.id
 				setToken(token)
                 localStorage.setItem('token',token)
@@ -140,7 +132,7 @@ function Registration(props) {
 					<div className="errors">{!inputfocus.password && errors.password}</div>
 				</div>
 
-				<div className='mt-3'>By continue you are agree to our <Link to="/terms" className='clr-p'>Terms of use</Link> & <Link className='clr-p' to="/privacy-policy">Privacy Policy</Link> </div>
+				<div className='mt-3'>By continue you are agree to our <Link to="/terms" className='clr-p'>Terms of use</Link> & <Link className='clr-p' to="/privacy">Privacy Policy</Link> </div>
 
 			</div>
 			

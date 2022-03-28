@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 
-
 const useForm = (callback, validate, name) => {
 	const [values, setValues] = useState({})
 	const [errors, setErrors] = useState({})
@@ -24,7 +23,6 @@ const useForm = (callback, validate, name) => {
             if(isNaN(event.target.value)) return false
 		setValues(values => ({ ...values, [event.target.name]: event.target.value }))
         setErrors(validate(event.target.value, event.target.name))	
-		console.table(errors)
 	}
 
 	return {
