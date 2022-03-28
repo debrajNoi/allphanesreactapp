@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Navigate } from 'react-router-dom'
-import coverPhoto from '../../assets/web_img/cover_photo.webp'
-import profilePhoto from '../../assets/web_img/profile.png'
-import profilePhoto1 from '../../assets/web_img/profile_1.png'
-import prof1 from '../../assets/web_img/pro_2.png'
-import post1 from '../../assets/web_img/post_1.jpg'
-import post2 from '../../assets/web_img/post_2.jpg'
+import coverPhoto from '../../assets/web_img/cover_1.jpg'
+import profilePhoto from '../../assets/web_img/pro_2.jpg'
+import profilePhoto1 from '../../assets/web_img/pro_3.webp'
+import prof1 from '../../assets/web_img/pro_1.jpg'
+// import post1 from '../../assets/web_img/post_1.jpg'
+import post2 from '../../assets/web_img/post_1.webp'
+import post3 from '../../assets/web_img/pro_4.webp'
 import goat from '../../assets/web_img/goat.png'
 
 import axios from "axios"
@@ -42,12 +43,12 @@ function Profile() {
             'PostDescription' : postdesc
         }
         axios.post(postTexts,data)
-		.then((response) => {
-			console.table(response.data)			
-		})
-		.catch(err => {
-		    console.log('error=>',err)
-		})
+        .then((response) => {
+            console.table(response.data)            
+        })
+        .catch(err => {
+            console.log('error=>',err)
+        })
 
         // console.log(getAllPosts(getPosts))
     }
@@ -103,9 +104,7 @@ function Profile() {
                                 </div>                                   
                             </Link>
                         </div>
-                        {/* <div className="view-post-img mt-3">
-                            <img src={post2} alt="profile not found" />
-                        </div> */}
+                        
                         <div className="view-post-des mt-2">
                             {item.PostDescription}
                         </div>
@@ -141,7 +140,7 @@ function Profile() {
                     </Link>
                 </div>
                 <div className="view-post-img mt-3">
-                    <img src={post2} alt="profile not found" />
+                    <img src={post3} alt="profile not found" />
                 </div>
                 <div className="view-post-des mt-3">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus sapiente temporibus quae facilis deleniti vitae vero excepturi magni nobis illum. Nulla velit tempore nisi commodi hic labore eius in laborum!
