@@ -15,39 +15,43 @@ import ProfileLayout from './views/pages/ProfileLayout'
 import Images from './views/images'
 import Terms from './views/pages/Terms'
 import Privacy from './views/pages/Privacy'
+import Notfound from './views/pages/Notfound'
+import Index from './views/Index'
+import Home from './views/pages/Home'
 // import PrivateOutlet from './_helpers/PrivateOutlet'
 
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path="/" element={<Layout />} >
-        <Route index element={<Login />}/>
-        <Route path="otp-verification" element={<OtpVerification />} />
-        <Route path="registration" element={<Registration />} />
-        <Route path="login" element={<Login />} />
+      <Route path='/' element={<Index />}>
+        <Route index element={<Home />} />
+        <Route path="home" element={<Home />} />
+        <Route path='terms' element={<Terms />} />
+        <Route path='privacy' element={<Privacy />} />
+        <Route path="images" element={<Images />} />
+        
+        <Route path="*" element={<Notfound />} />
+        {/* private Route  */}
+        <Route path="profile" element={<ProfileLayout />} />
+
       </Route>
+      <Route path="/auth" element={<Layout />} >
+          <Route index element={<Login />}/>
+          <Route path="registration" element={<Registration />} />
+          <Route path="login" element={<Login />} />
+          <Route path="verification" element={<OtpVerification />} /> {/* private route */}
+        </Route>
+      
 
       {/* <Route path="/*" element={<PrivateOutlet />} >
         <Route path="profile" element={<Profile />} />
       </Route> */}
-      <Route path="profile" element={<ProfileLayout />} />
-      <Route path='terms' element={<Terms />} />
-      <Route path='privacy' element={<Privacy />} />
-      <Route path="*" element={<Notfound />} />
-      <Route path="images" element={<Images />} />
+      
 
     </Routes>
   </Router>,
   document.getElementById('root')
 )
-
-function Notfound(){
-  return (
-    <>  
-      <h1>404 Page Not Found</h1>
-    </>
-  )
-}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

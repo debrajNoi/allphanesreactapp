@@ -1,17 +1,34 @@
 import React, {useState} from "react"
 import { Link, useNavigate, Navigate } from "react-router-dom"
-import Gmail from '../../assets/web_img/gmail.png'
 import axios from "axios"
 import { config } from '../../constant'
 const getRegisterUrl = config.url.API_URL+'users/otpverification'
-// import { useEffect } from "react"
+const resendOtpApi = config.url.API_URL+'users/resendotp'
 
 export default function OtpVerification(props){
     const [otp, setOtp] = useState(new Array(6).fill(""))
+    const [errorMsg, setErrorMsg] = useState()
+    const [resendMsg, setResendMsg] = useState()
     const navigate = useNavigate()
-
-    if(!localStorage.getItem('token')) return <Navigate to="/login" />
+    const token = localStorage.getItem('token')
+    if(!token) return <Navigate to="/auth/login" />
     
+    const resendOtp = () =>{
+        let data = {
+            "id" : token
+        }
+        console.table(data)
+        axios.post(resendOtpApi,data)
+		.then((response) => {
+            console.table(response.data)
+            if(response.data.ack === '1'){
+                setResendMsg(response.data.message)
+            }
+		})
+		.catch(err => {
+		    console.log('error=>',err)
+		})
+    }
 
     const handleChange = (element, index) => {
         if (isNaN(element.value)) return false
@@ -30,34 +47,39 @@ export default function OtpVerification(props){
             "id":token,
             "otp" : otp.join("")
         }
-        console.log('brodata =>',data)
         axios.post(getRegisterUrl,data)
 		.then((response) => {
             console.log(response)
-			if(!response.data.status === 200){
-                const errorMessage = response.data.message
-                return console.log('errmsg =>',errorMessage)
-			}
-            // if(response.data.status === 200) return navigate("/profile")
-            
-            return alert(response.data.message)
-            // return navigate("/profile")
+            const result = response.data.status === 200 ? 
+                navigate("/profile") 
+                : setErrorMsg(response.data.message)
+            return result
 		})
 		.catch(err => {
 		    console.log('error=>',err)
 		})
     }
-
+    // '246562'
     return(
         <>
             <form className='align-center' onSubmit={handleSubmit}>
+                
                 <h3>Almost There</h3>
                 <div className='phone-tag mt-4 mb-3'>
-                    <h6>Please enter 6 digit otp that we just sent on email : <span className="clr-p"></span></h6>
+                    <h6>Please enter 6 digit otp that we just sent on email <span className="clr-p"></span></h6>
+                    {errorMsg && 
+                        <div className="err-msg2">
+                            {errorMsg}
+                        </div>
+                    }
+                    {resendMsg && 
+                        <div className="bg-white p-3 clr-p">
+                            {resendMsg}
+                        </div>
+                    }
                     <div className='w-300 my-4 bg-w p_4'>
                         <div className="otp-fields">
                             {otp.map((data, index) => {
-                                console.log(data)
                                 return (
                                     <>
                                         <input
@@ -79,16 +101,14 @@ export default function OtpVerification(props){
                     
 
                         <div className="otp-fields mt-1 clr-p">
-                            <Link to="/login" className="clr-p">Edit Email</Link>
-                            <div>Resend OTP</div>
+                            {/* <Link to="/login" className="clr-p">Edit Email</Link> */}
+                            <div className="cur-p" onClick={resendOtp}>Resend OTP</div>
                         </div>
                     </div>
-                    <div className='mt-4'>By continue you are agree to our <Link to="/terms" className='clr-p'>Terms of use</Link> & <Link className='clr-p' to="/privacy-policy">Privacy Policy</Link></div>
+                    <h6 className="clr-p">Can't find the email please check spam folder.</h6>
+                    {/* <div className='mt-4'>By continue you are agree to our <Link to="/terms" className='clr-p'>Terms of use</Link> & <Link className='clr-p' to="/privacy-policy">Privacy Policy</Link></div> */}
                 </div>
-                <div>OR</div>
-                <div className='mt-4 mb-5'>
-                    <img src={Gmail} alt="not found"></img>
-                </div>
+                
                 <button className="btn btns">Continue</button>
             </form>
         </>

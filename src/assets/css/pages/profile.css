@@ -32,7 +32,7 @@
 }
 
 .profile-photo {
-    background: #63BD9D;
+    /* background: #63BD9D; */
     border-radius: 50%;
 }
 
@@ -114,7 +114,6 @@
 .online-Profile {
     width: 42px;
     height: 42px;
-    background: #63BD9D;
     border-radius: 50%;
     margin-right: 15px;
 }
@@ -339,4 +338,42 @@ a {
     .view-post-img img{
         max-height: 600px;
     }
+}
+
+.err-msg2{
+    width: 100%;
+    background-color: #C4C4C4;
+    color: red;
+    padding: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.terms h6{
+    font-weight: bold;
+}
+.terms p{
+    font-size: 16px;
+}
+
+.read-more{
+    text-align: end;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+#banner{
+    height: 80vh;
+    background-color: red;
+}
+
+.banner-img{
+    border-radius: 50%;
+}
+
+.center-item{
+    display: grid;
+    place-items: center;
+    background-color: blue;
+    height: 100%;
+    font-size: 48px;
 }

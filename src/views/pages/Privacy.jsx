@@ -4,7 +4,6 @@ import IndexNavbar from '../../components/Navbars/IndexNavbar'
 function Privacy() {
   return (
     <main>
-        <IndexNavbar />
         <div>
             <div className="terms container mt-5">
                 <h3>Privacy Policy </h3>

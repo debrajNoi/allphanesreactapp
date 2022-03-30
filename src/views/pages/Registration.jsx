@@ -6,10 +6,8 @@ import axios from "axios"
 import { config } from '../../constant'
 const getRegisterUrl = config.url.API_URL+"users/create"
 
-
 function Registration(props) {
 	const [inputfocus, setInputfocus] = useState({})
-	const [token, setToken] = useState()
 	const [errmsg, setErrMsg] = useState()
 	
 	const {
@@ -29,9 +27,8 @@ function Registration(props) {
 			console.table(response.data)			
 			if(response.data.status === 200){
 				const token = response.data.id
-				setToken(token)
                 localStorage.setItem('token',token)
-                navigate("/otp-verification")
+                navigate("/auth/verification")
 			}else{
 				setErrMsg(response.data.message)
 			}
@@ -138,7 +135,7 @@ function Registration(props) {
 			
 			
 			<button className="btn btns mt-3">Continue</button>
-			<div className="mt-3">Already have an account? goto <Link className="clr-p" to="/login">Sign In</Link></div>
+			<div className="mt-3">Already have an account? goto <Link className="clr-p" to="/auth/login">Sign In</Link></div>
 		</form>
     </>
   )

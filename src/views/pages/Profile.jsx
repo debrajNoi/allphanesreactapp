@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Navigate } from 'react-router-dom'
-import coverPhoto from '../../assets/web_img/cover_1.jpg'
-import profilePhoto from '../../assets/web_img/pro_2.jpg'
-import profilePhoto1 from '../../assets/web_img/pro_3.webp'
-import prof1 from '../../assets/web_img/pro_1.jpg'
-// import post1 from '../../assets/web_img/post_1.jpg'
+import coverPhoto from '../../assets/web_img/bg6.jpg'
+import profilePhoto from '../../assets/web_img/choto_logo-removebg.jpg'
+import profilePhoto1 from '../../assets/web_img/choto_logo-removebg.jpg'
+import prof1 from '../../assets/web_img/choto_logo-removebg.jpg'
 import post2 from '../../assets/web_img/post_1.webp'
 import post3 from '../../assets/web_img/pro_4.webp'
-import goat from '../../assets/web_img/goat.png'
 
 import axios from "axios"
 import { config } from '../../constant'
@@ -23,6 +21,7 @@ function Profile() {
         const response = await fetch(url)
         const data = await response.json()
         setPosts(await data.view)
+        console.log('result => ', data.view)
     }
 
     useEffect(() => {
@@ -33,7 +32,7 @@ function Profile() {
         setPostDesc(e.target.value)
     }
 
-    const handleSubmit = e =>{
+    const handleSubmit = async e =>{
         e.preventDefault()
         const id = localStorage.getItem('token')
         let data = {
@@ -41,7 +40,7 @@ function Profile() {
             'postTitle' : 'testing',
             'postDescription' : postdesc
         }
-        axios.post(createPost,data)
+        await axios.post(createPost,data)
 		.then((response) => {
             setPostDesc('')
             getAllPosts(getPosts)
@@ -84,51 +83,37 @@ function Profile() {
                 
             </div>
         </div>
+       
         {/* view post section */}
         <div className="post-area-section mb-5">
-            {/* <div>{posts}</div> */}
             {/* //loop this  */}
             
             {posts && posts.map(item => {
-
-                return (
-                    
-                    <div className="view-post pb-3 mt-3">
-                        <div className="post-creator">
-                            <Link to="/profile" className="posted-user">
-                                <div className='posted-user-d'>
-                                    <img src={profilePhoto1} alt="profile" className='posted-profile' />
-                                    <div className="post-user-name">{item.user_info[0].firstName+ ' ' + item.user_info[0].lastName}</div>
-                                </div>                                   
-                            </Link>
-                        </div>
+                if(item.user_info[0]){
+                    return (
                         
-                        <div className="view-post-des mt-2">
-                            {item.postDescription}
+                        <div className="view-post pb-3 mt-3">
+                            <div className="post-creator">
+                                <Link to="/profile" className="posted-user">
+                                    <div className='posted-user-d'>
+                                        <img src={profilePhoto1} alt="profile" className='posted-profile' />
+                                        <div className="post-user-name">{item.user_info[0] && item.user_info[0].firstName+ ' ' + item.user_info[0].lastName}</div>
+                                    </div>                                   
+                                </Link>
+                            </div>
+                            
+                            <div className="view-post-des mt-2">
+                                {item.postDescription}
+                            </div>
                         </div>
-                    </div>
-                )
+                    )
+                }
+                return
             })} 
-            <div className="view-post pb-3 mt-3">
-                <div className="post-creator">
-                    <Link to="/profile" className="posted-user">
-                        <div className='posted-user-d'>
-                            <img src={profilePhoto1} alt="profile" className='posted-profile' />
-                            <div className="post-user-name">Emily Burns</div>
-                        </div>                                   
-                    </Link>
-                </div>
-                <div className="view-post-img mt-3">
-                    <img src={post2} alt="profile not found" />
-                </div>
-                <div className="view-post-des mt-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus sapiente temporibus quae facilis deleniti vitae vero excepturi magni nobis illum. Nulla velit tempore nisi commodi hic labore eius in laborum!
-                </div>
-            </div>
             {/* end loop  */}
             
 
-            <div className="view-post pb-3 mt-3">
+            {/* <div className="view-post pb-3 mt-3">
                 <div className="post-creator">
                     <Link to="/profile" className="posted-user">
                         <div className='posted-user-d'>
@@ -141,9 +126,13 @@ function Profile() {
                     <img src={post3} alt="profile not found" />
                 </div>
                 <div className="view-post-des mt-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus sapiente temporibus quae facilis deleniti vitae vero excepturi magni nobis illum. Nulla velit tempore nisi commodi hic labore eius in laborum!
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Delectus sapiente temporibus quae facilis deleniti vitae vero excepturi 
+                    magni nobis illum. Nulla velit tempore nisi commodi hic labore eius in laborum!
                 </div>
-            </div>
+                <div className='clr-p read-more'>Read More</div>
+
+            </div> */}
             {/* dummy  */}
         </div>
     </section>

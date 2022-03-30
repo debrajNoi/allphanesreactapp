@@ -6,7 +6,7 @@ import logo from '../../assets/web_img/main_logo.png'
 
 function IndexNavbar() {
 	const [isActive, setActive] = useState(false);
-	const [auth, setAuth] = useState(false)
+	// const [auth, setAuth] = useState(false)
 	const navigate = useNavigate()
 	const toggleClass = () => {
 		setActive(!isActive);
@@ -14,10 +14,11 @@ function IndexNavbar() {
 
 	const logout = e => {
 		localStorage.clear()
-		navigate("/login")
+		navigate("auth/login")
 	}
 
-    if(!localStorage.getItem('token')) setAuth(!auth)
+	const tokens = localStorage.getItem('token')
+    // if(localStorage.getItem('token') != '') setAuth(true)
 	
 	return (
 		<header id="header" className="index-header">
@@ -31,13 +32,12 @@ function IndexNavbar() {
 				<div className="nav-right">
 					{/* <div className=""> */}
 						<ul className={isActive ? 'nav-middle active': 'nav-middle'}>
-							<li className="nav-item active"> <a className="nav-link" href={`${process.env.PUBLIC_URL}/profile`}>Plan & Pricing</a> </li>
-							<li className="nav-item"><a className="nav-link" href={`${process.env.PUBLIC_URL}/profile`} > Support </a></li>
-							<li className="nav-item">
-								<a className="nav-link" href={`${process.env.PUBLIC_URL}/login`} data-bs-toggle="dropdown">Sign in</a>                    
-							</li>
-							<li className="nav-item"><a className="nav-link" href={`${process.env.PUBLIC_URL}/registration`}>Sign up</a></li>
-							<li className="nav-item"><button className="btn btn-primary" onClick={logout}>Log Out</button></li>
+							<li className="nav-item"> <Link className="nav-link" to="/home">Home</Link> </li>
+							<li className="nav-item"><Link className="nav-link" to="/plan">Plan & Pricing</Link></li>
+							<li className="nav-item"><Link className="nav-link" to="/support">Support</Link></li>
+							{!tokens && <li className="nav-item"><Link className="nav-link" to="auth/login">Sign in</Link></li>}
+							{!tokens && <li className="nav-item"><Link className="nav-link btn-signs shadow-sm" to="auth/registration">Sign up</Link></li>}
+							{tokens && <li className="nav-item"><button className="btn btn-signs shadow-sm" onClick={logout}>Sign Out</button></li>}	
 						</ul>
 					{/* </div> */}
 					<div className="nav-right">

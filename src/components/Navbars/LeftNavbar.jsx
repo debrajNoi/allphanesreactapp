@@ -1,10 +1,26 @@
-// import React,{ useState } from "react"
+import React,{ useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import profilePhoto1 from '../../assets/web_img/pro_3.webp'
+import profilePhoto1 from '../../assets/web_img/choto_logo-removebg.jpg'
 
+import axios from "axios"
+import { config } from '../../constant.js'
 
+const onlineURL = config.url.API_URL+'users/online'
 
 function LeftNavbar(props) {	
+   const [onlineUsers, setOnlineUsers] = useState()
+
+   const getOnlineUsers = async () =>{
+      const response = await axios.get(onlineURL)
+      const data = await response.data
+      setOnlineUsers(await data.data)
+      console.log('response => ', data)
+   }  
+   
+   useEffect(() => {
+      getOnlineUsers()
+  },[])
+
 	return (
 		<section id="leftBar">
                             <div className="left-sec-1">
@@ -17,32 +33,20 @@ function LeftNavbar(props) {
                                 <div className="online-title">
                                    <div className="online-dot"></div> Online/ live
                                 </div>
-                                <Link to="/profile" className="online-users mt-3">
-                                   <div className="online-Profile">
-                                        <img src={profilePhoto1} alt="profile not found" />
-                                       {/* <img src={`https://raw.githubusercontent.com/Sakibhaqie/allphanes/main/gellary/image/1647426605429.jpg`} alt="not found"/> */}
-
-                                    </div> 
-                                   <div className="online-name">Jhon Doe</div>
-                                </Link>
-                                <Link to="/profile" className="online-users">
-                                   <div className="online-Profile">
-                                        <img src={profilePhoto1} alt="profile not found" />
-                                    </div> 
-                                   <div className="online-name">Jhon Doe</div>
-                                </Link>
-                                <Link to="/profile" className="online-users">
-                                   <div className="online-Profile">
-                                        <img src={profilePhoto1} alt="profile not found" />
-                                    </div> 
-                                   <div className="online-name">Jhon Doe</div>
-                                </Link>
-                                <Link to="/profile" className="online-users">
-                                   <div className="online-Profile">
-                                        <img src={profilePhoto1} alt="profile not found" />
-                                    </div> 
-                                   <div className="online-name">Jhon Doe</div>
-                                </Link>
+                                {/* loop  */}
+                                
+                                    {onlineUsers && onlineUsers.map(user => {
+                                       return (
+                                          <Link to="/profile" className="online-users">
+                                             <div className="online-Profile">
+                                                <img src={profilePhoto1} alt="profile not found" />
+                                             </div> 
+                                             <div className="online-name">{user.firstName+ '    ' + user.lastName}</div>
+                                          </Link>
+                                       )
+                                    })}
+                     
+                                {/* end loop  */}
                                 
                             </div>
                         </section>

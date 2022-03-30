@@ -85,7 +85,7 @@ export default function Login(props) {
 
                 </div>
                 <button className="btn btns mt-4">Continue</button>
-                <div className='mt-4'>Don't Have an Account? <Link className='clr-p' to="/registration">Register</Link></div>
+                <div className='mt-4'>Don't Have an Account? <Link className='clr-p' to="/auth/registration">Register</Link></div>
             </form>
         </>         
     )

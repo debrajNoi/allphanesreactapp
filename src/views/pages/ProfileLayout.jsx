@@ -7,12 +7,11 @@ import RightBar from '../../components/Navbars/RightBar'
 import Profile from './Profile'
 
 export default function ProfileLayout() {
-    if(!localStorage.getItem('token')) return <Navigate to="/login" />
+    if(!localStorage.getItem('token')) return <Navigate to="/auth/login" />
 
     return (
         <>
             {/* <div className='navbar'>Nav bar</div> */}
-            <IndexNavbar />
             <div className='container-fluid'>
                 <div className='row'>
                     <div className="col-lg-2 col-md-3">
