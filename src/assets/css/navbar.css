@@ -2,7 +2,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .index-header{
-    background: #5DBB63;
+    background: #f5fcff;
     color: #000;
     height: 80px;
     display: flex;
@@ -16,7 +16,7 @@
 }
 
 .index-header ul li a:hover{
-    color: #fff;
+    color: #000;
 }
 
 /* .index-header a */
@@ -44,11 +44,11 @@
     list-style: none;
 }
 .index-header ul li a{
-    color: #fff;
+    color: #000;
 }
 
 .nav-link{
-    color: #fff !important;
+    color:#000 !important;
 }
 
 .btn-signs{

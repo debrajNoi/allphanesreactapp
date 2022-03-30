@@ -373,7 +373,7 @@ a {
 .center-item{
     display: grid;
     place-items: center;
-    background-color: blue;
+    /* background-color: blue; */
     height: 100%;
     font-size: 48px;
 }
