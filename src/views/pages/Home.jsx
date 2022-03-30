@@ -8,9 +8,7 @@ function Home() {
             <div className="row px-3">
             <div className="col-lg-6">
                 <div className='center-item'>
-                    <p>a Forum 
-          where creators, professionals and others can provide, market and get paid for their
-creations, products and services. </p>
+                    <p>comming soon ...............</p>
                 </div>
             </div>
             <div className="col-lg-2"></div>
