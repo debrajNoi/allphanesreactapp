@@ -73,7 +73,7 @@ function Terms() {
 
                   </li>
                   <li className="mt-2">
-The content you upload will belong to you not to Allphanes. Should you chose to remove the content you can do so at any time. However, Allphanes reserves the right to continue to store your content but not display/share it anymore, should you chose to remove  it.
+                      The content you upload will belong to you not to Allphanes. Should you chose to remove the content you can do so at any time. However, Allphanes reserves the right to continue to store your content but not display/share it anymore, should you chose to remove  it.
 
                   </li>
 

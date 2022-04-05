@@ -1,5 +1,6 @@
 import React from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import Footer from '../components/Footers/Footer'
 import IndexNavbar from '../components/Navbars/IndexNavbar'
 
 function Index() {
@@ -7,6 +8,7 @@ function Index() {
     <main>
         <IndexNavbar />
         <Outlet />
+        <Footer />
     </main>
   )
 }

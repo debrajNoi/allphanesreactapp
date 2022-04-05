@@ -361,19 +361,64 @@ a {
     cursor: pointer;
 }
 
-/*#banner{
-    height: 80vh;
-    background-color: red;
-}*/
+#banner{
+    min-height: 80vh;
+    /* background-color: red; */
+}
 
 .banner-img{
     border-radius: 50%;
 }
 
 .center-item{
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
     /* background-color: blue; */
     height: 100%;
-    font-size: 48px;
+    /* font-size: 40px; */
+}
+
+.clr-1{
+    color: #CB58AB;
+}
+
+.pd-0{
+    padding: 0;
+}
+
+.ff-1{
+    font-family: caramel;
+    font-style: italic;
+}
+
+#tbd{
+    background-color: #0071BE;
+    /* height: 250px; */
+    padding: 40px;
+}
+
+#notfound{
+    min-height: 60vh;
+}
+
+.tbd{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    flex-wrap: wrap;
+}
+
+.circles{
+    width: 180px;
+    height: 180px;
+    /* background-color: red; */
+    border-radius: 50%;
+   margin: 10px;
+}
+
+.circles img{
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
 }

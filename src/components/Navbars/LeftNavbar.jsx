@@ -31,7 +31,7 @@ function LeftNavbar(props) {
                             </div>
                             <div className="online-component">
                                 <div className="online-title">
-                                   <div className="online-dot"></div> Online/ live
+                                   <div className="online-dot"></div> Online
                                 </div>
                                 {/* loop  */}
                                 

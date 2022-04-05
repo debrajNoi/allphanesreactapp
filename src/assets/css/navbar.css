@@ -2,7 +2,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .index-header{
-    background: #f5fcff;
+    background: #F5FCFF;
     color: #000;
     height: 80px;
     display: flex;
@@ -12,9 +12,11 @@
 }
 .index-header a{
     text-decoration: none !important;
-    color: #fff;
+    color: #000;
 }
-
+.index-header ul li a{
+    color: #000;
+}
 .index-header ul li a:hover{
     color: #000;
 }
@@ -43,22 +45,64 @@
     margin-top: 15px;
     list-style: none;
 }
-.index-header ul li a{
-    color: #000;
-}
+
 
 .nav-link{
-    color:#000 !important;
+    color: #000 !important;
 }
 
 .btn-signs{
- color: #fff;
+ color: #fff !important;
 background: linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), #05A081;
 border-radius: 20px;
 }
 .btn-signs:hover{
     color: #fff;
 }
+
+
+.footer-end{
+    background-color: #F5FCFF;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-top: 1px solid #0002;
+}
+
+.f-links{
+    color: #000;
+}
+
+.f-links:hover{
+    color: #000;
+}
+
+.f-logo{
+    height: 60px;
+}
+
+#footer{
+    padding: 60px 80px;
+    background-color: #F5FCFF;
+}
+
+.social-img{
+    width: 180px !important;
+    height: 180px;
+}
+
+#footer ul li{
+    font-size: 18px;
+    list-style: none;
+    margin-top: 8px;
+}
+
+.f-end a{
+    padding: 0 15px;
+}
+
 
 @media screen and (max-width: 990px) {
     .nav-middle{

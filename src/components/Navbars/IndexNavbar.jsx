@@ -24,11 +24,11 @@ function IndexNavbar() {
 		<header id="header" className="index-header">
 			<div className="nav-main">
 				<div className="logo-top">
-					<Link to="/profile">
+					<Link to="/home">
 						<img src={logo} alt="not found" />	
 					</Link>
 				</div>
-
+				
 				<div className="nav-right">
 					{/* <div className=""> */}
 						<ul className={isActive ? 'nav-middle active': 'nav-middle'}>
@@ -37,8 +37,10 @@ function IndexNavbar() {
 							<li className="nav-item"><Link className="nav-link" to="/support">Support</Link></li>
 							{!tokens && <li className="nav-item"><Link className="nav-link" to="auth/login">Sign in</Link></li>}
 							{!tokens && <li className="nav-item"><Link className="nav-link btn-signs shadow-sm" to="auth/registration">Sign up</Link></li>}
-							{tokens && <li className="nav-item"><button className="btn btn-signs shadow-sm" onClick={logout}>Sign Out</button></li>}	
+							{tokens && <li className="nav-item"><button className="btn btn-signs shadow-sm" onClick={logout}>Sign Out</button></li>}
+								
 						</ul>
+						
 					{/* </div> */}
 					<div className="nav-right">
 						{/* <div className="menu-buttn">
