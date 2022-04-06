@@ -14,6 +14,8 @@ const getRegisterUrl = config.url.API_URL+'users/login'
 
 export default function Login(props) {
 	const [inputfocus, setInputfocus] = useState({})
+	const [errmsg, setErrMsg] = useState()
+
     const {
 		values,
 		errors,
@@ -21,12 +23,9 @@ export default function Login(props) {
 		handleSubmit,
 	} = useForm(login, validate, 'login')
 	// const [token, setToken] = useState()
-
-
     const navigate = useNavigate()
 
     function login(){
-
         axios.post(getRegisterUrl,values)
 		.then((response) => {
 			if(response.data.status === 200){
@@ -36,8 +35,8 @@ export default function Login(props) {
                 // console.log(tokens)
                 navigate("/profile")
 			}else{
-				const errorMessage = response.data.message
-                console.log('errmsg =>',errorMessage)
+				setErrMsg(response.data.message) 
+                console.log('errmsg =>',errmsg)
 			}
 		})
 		.catch((error) => {
@@ -49,6 +48,7 @@ export default function Login(props) {
         <>
             <form className='items-center' onSubmit={handleSubmit}>
                 <h3 className=''>Welcome</h3>
+                {errmsg && <div className="err-msg">{errmsg}</div>}
                 <div className='phone-tag mt-4 mb-2'>
 
                     {/* email  */}

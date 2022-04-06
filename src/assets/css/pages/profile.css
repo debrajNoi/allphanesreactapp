@@ -144,10 +144,11 @@
     display: flex;
     gap: 15px;
     width: 100%;
-    min-height: 150px;
+    min-height: 130px;
     background: #C4C4C4;
-    padding: 15px;
+    padding: 6px;
     margin-top: 10px;
+    overflow: hidden;
     /* flex-wrap: wrap; */
 }
 
@@ -167,7 +168,7 @@
 .trend-video img {
     max-width: 180px;
     width: 100%;
-    height: 100%;
+    height: 130px;
 }
 
 .trend-video-description {
@@ -421,4 +422,13 @@ a {
     border-radius: 50%;
     height: 100%;
     width: 100%;
+}
+
+.pd-0{
+    padding: 0;
+    margin: 0;
+}
+
+.fea-img{
+    height: 370px;
 }

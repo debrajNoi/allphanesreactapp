@@ -18,6 +18,7 @@ import Privacy from './views/pages/Privacy'
 import Notfound from './views/pages/Notfound'
 import Index from './views/Index'
 import Home from './views/pages/Home'
+import App from './components/Modals/demo'
 // import PrivateOutlet from './_helpers/PrivateOutlet'
 
 ReactDOM.render(
@@ -30,6 +31,7 @@ ReactDOM.render(
         <Route path='privacy' element={<Privacy />} />
         <Route path="images" element={<Images />} />
         
+        <Route path="demo" element={<App />} />
         <Route path="*" element={<Notfound />} />
         {/* private Route  */}
         <Route path="profile" element={<ProfileLayout />} />
