@@ -1,1 +1,241 @@
-body{background-color:#fff}#auth{height:100vh;overflow-x:hidden}#auth #auth-right{background:url(../../images/bg/4853433.jpg),linear-gradient(90deg,#2d499d,#3f5491);height:100%}#auth #auth-left{padding:5rem 8rem}#auth #auth-left .auth-title{font-size:4rem;margin-bottom:1rem}#auth #auth-left .auth-subtitle{color:#a8aebb;font-size:1.7rem;line-height:2.5rem}#auth #auth-left .auth-logo{margin-bottom:7rem}#auth #auth-left .auth-logo img{height:2rem}@media screen and (max-width:767px){#auth #auth-left{padding:5rem}}
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.Login {
+    background: #F5FCFF;
+    min-height: 100vh;
+    width: 100%;
+}
+/* display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; */
+.main_logo {
+    max-width: 300px;
+}
+.youtube-div{
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+}
+.cur-p{
+    cursor: pointer;
+}
+/* .youtube_frame {
+    margin-top: 20px;
+    max-height: 370px;
+ border-radius: 10px; 
+} */
+
+.C_flags img {
+    width: 40px;
+    height: 25px;
+}
+.p_4{
+    padding: 20px 10px;
+}
+
+.btns {
+    background: #5DBB63 !important;
+    border: 1px solid #5DBB63 !important;
+    color: #fff !important;
+    border-radius: 15px !important;
+    width: 200px;
+}
+
+.phone {
+    border: 1px solid rgb(101, 101, 170);
+    background-color: rgb(224, 224, 224);
+    border-radius: 20px;
+}
+
+.PhoneInputCountry {
+    width: 50px;
+    padding-left: 15px;
+}
+
+.PhoneInputInput {
+    padding: 10px;
+    border: none;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.login{
+    padding: 7px;
+    padding-left: 10px;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid rgb(101, 101, 170);
+}
+
+.PhoneInputInput:focus, .login:focus {
+    border: none !important;
+    outline: none !important;
+}
+
+.clr-p{
+    text-decoration: none;
+    color: rgb(216, 23, 87);
+    font-size: 13px;
+    font-weight: bold;
+}
+.clr-p:hover{
+    color: rgb(216, 23, 87);
+}
+
+.head {
+    margin-top: 110px;
+}
+
+img {
+    width: 100% !important;
+}
+.hxz-100{
+    min-height: 100vh;
+}
+.align-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.name-div{
+    display: flex;
+    gap: 10px;
+}
+
+.phone-tag, .reg-div {
+    text-align: left;
+    max-width: 400px;
+    /* background-color: red; */
+    width: 100%;
+    /* min-width: 330px; */
+}
+
+.reg-div input{
+    max-width: 500px;
+    width: 100%;
+    /* background-color: red; */
+}
+
+.reg-div label{
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.item-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.bg_red {
+    background: red;
+}
+
+.errors, .valid{
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.errors{
+    color: red;
+}
+.valid{
+    color: green;
+}
+
+.m-hide{
+    display: block;
+}
+.m-show{
+    display: none;
+}
+
+.otp-fields{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 15px; */
+    /* background-color: red; */
+    padding: 10px;
+}
+.bar{
+    font-size: bold;
+    width: 8px;
+    height: 2px;
+    background-color: #000;
+}
+.bar:last-child{
+    display: none;
+}
+
+.otp-fields input{
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+.bg-w{
+    background: #fff;
+}
+.login-form label{
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 769px) {
+    .m-hide{
+        display: none;
+    }
+    .m-show{
+        display: block;
+        /* padding-bottom: 40px; */
+    }
+
+    .name-div{
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .head{
+        margin-top: 40px;
+    }
+    .item-center{
+        padding: 0 30px;
+    }
+    .reg-div{
+        padding: 0 15px;
+    }
+    .otp-fields input{
+        height: 35px;
+        width: 35px;
+        margin: 2px;
+        /* padding: 3px; */
+        /* background-color: red; */
+    }
+    .bar{
+        width: 5px;
+    }
+    .p_4{
+        padding: 20px 0;
+    }
+    .youtube_frame{
+       margin-bottom: 30px;  
+    }
+    .youtube-div{
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    
+    .mtt-150{
+        margin-top: 150px;
+    }
+}
