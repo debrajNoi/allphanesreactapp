@@ -1,58 +1,49 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
-// css 
-import './assets/css/pages/auth.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './assets/css/pages/profile.css'
-import './assets/css/navbar.css'
-// pages 
-import Layout from "./views/pages/Layout"
-import Registration from './views/pages/Registration'
-import OtpVerification from './views/pages/OtpVerification'
-import Login from './views/pages/Login'
-import ProfileLayout from './views/pages/ProfileLayout'
-import Images from './views/images'
-import Terms from './views/pages/Terms'
-import Privacy from './views/pages/Privacy'
-import Notfound from './views/pages/Notfound'
-import Index from './views/Index'
-import Home from './views/pages/Home'
-// import PrivateOutlet from './_helpers/PrivateOutlet'
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+
+import 'react-notifications/lib/notifications.css';
+
+// styles for this kit
+import "./assets/css/bootstrap.min.css";
+import "./assets/vendors/perfect-scrollbar/perfect-scrollbar.css";
+import "./assets/vendors/bootstrap-icons/bootstrap-icons.css";
+import "./assets/css/app.css";
+import "./assets/css/font-awesome.min.css";
+
+import "./assets/css/pages/auth.css";
+import "./assets/css/custom.css";
+// pages for this kit
+import Index from "./views/Index.js";
+import LoginPage from "./views/pages/LoginPage.js";
+import RegisterPage from "./views/pages/RegisterPage.js";
+import DashboardPage from "./views/pages/DashboardPage.js";
+import DocumentPage from "./views/pages/DocumentPage.js";
+import TemplatePage from "./views/pages/TemplatePage.js";
+import CreateProjectPage from "./views/pages/CreateProjectPage.js";
+import SettingsPage from "./views/pages/SettingsPage.js";
+import CreateProjectEditor from "./views/pages/CreateProjectEditor";
+
 
 ReactDOM.render(
-  <Router>
-    <Routes>
-      <Route path='/' element={<Index />}>
-        <Route index element={<Home />} />
-        <Route path="home" element={<Home />} />
-        <Route path='terms' element={<Terms />} />
-        <Route path='privacy' element={<Privacy />} />
-        <Route path="images" element={<Images />} />
-        
-        <Route path="*" element={<Notfound />} />
-        {/* private Route  */}
-        <Route path="profile" element={<ProfileLayout />} />
+	<BrowserRouter basename="/copy/copy/">
+		<Switch>
+			<Switch>
+				<Route path="/index" render={(props) => <Index {...props} />} />
+				<Route path="/login" render={(props) => <LoginPage {...props} />} />
+				<Route path="/register" render={(props) => <RegisterPage {...props} />} />
+				<Route path="/dashboard" render={(props) => <DashboardPage {...props} />} />
+				<Route path="/documents" render={(props) => <DocumentPage {...props} />} />
+				<Route path="/templates" render={(props) => <TemplatePage {...props} />} />
+				<Route path="/create-project" render={(props) => <CreateProjectPage {...props} />} />
+				<Route path="/create-project-edior" render={(props) => <CreateProjectEditor {...props} />} />
+				<Route path="/settings" render={(props) => <SettingsPage {...props} />} />
+				<Redirect to="/index" />
+				<Redirect from="/" to="/index" />
+				
+			</Switch>
+		</Switch>
+	</BrowserRouter>,
+	document.getElementById('root')
+);
 
-      </Route>
-      <Route path="/auth" element={<Layout />} >
-          <Route index element={<Login />}/>
-          <Route path="registration" element={<Registration />} />
-          <Route path="login" element={<Login />} />
-          <Route path="verification" element={<OtpVerification />} /> {/* private route */}
-        </Route>
-      
-
-      {/* <Route path="/*" element={<PrivateOutlet />} >
-        <Route path="profile" element={<Profile />} />
-      </Route> */}
-      
-
-    </Routes>
-  </Router>,
-  document.getElementById('root')
-)
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
