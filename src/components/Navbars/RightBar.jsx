@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Youtube from '../../assets/web_img/choto_logo-removebg.jpg'
+import Youtube from '../../assets/web_img/choto_logo_1.png'
 
 
 function RightBar() {

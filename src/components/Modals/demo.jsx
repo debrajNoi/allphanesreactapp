@@ -31,41 +31,43 @@ function MyVerticallyCenteredModal(props) {
         setSelectedFile(e.target.files[0])
     }
 
+    const closeModal = e =>{
+      props.onHide()
+      setPreview(undefined)
+      return () => URL.revokeObjectURL(selectedFile)
+    }
+
     return (
       <Modal
         {...props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        className="bs_modal"
       >
-        {/* <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
-          </Modal.Title>
-        </Modal.Header> */}
+        <div className="modal_header text-center">
+          header
+        </div>
         <Modal.Body className="pd-0">
           <div class="row pd-0">
-              <div className="col-lg-7 pd-0">
+              <div className="col-lg-7 pd-0 post_img">
                 {/* <img src={images} alt="modal" /> */}
                 {selectedFile &&  <img src={preview} alt="modal" /> }
               </div>
               <div className="col-lg-5">
               <input type='file' onChange={onSelectFile} />
-            
+              <Button onClick={closeModal}>Close</Button>
+
               </div>
           </div>    
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
+        
       </Modal>
     );
   }
   
  export default function App() {
     const [modalShow, setModalShow] = useState(false);
-
-    
   
     return (
       <>

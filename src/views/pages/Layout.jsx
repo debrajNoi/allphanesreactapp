@@ -1,6 +1,5 @@
 import main_logo from '../../assets/web_img/main_logo.png'
-import Youtube from '../../assets/web_img/youtube.png'
-// import { withRouter } from 'react-router-dom'
+import chotologo from '../../assets/web_img/choto_logo_1.png'
 import { useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 
@@ -14,7 +13,7 @@ export default function Layout(){
                     <div className='col-lg-6 order-lg-1 order-3 items-center'>
                         <img src={main_logo} className="main_logo m-hide" alt="logo" />
                         <div className='youtube-div'>
-                         <img src={Youtube} className="youtube_frame mt-5" alt="logo" />
+                         <img src={chotologo} className="youtube_frame mt-5" alt="logo" />
                         </div>
                     </div>
                     <div className="col-1 order-2"></div>

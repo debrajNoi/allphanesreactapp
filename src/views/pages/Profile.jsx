@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import coverPhoto from '../../assets/web_img/bg6.jpg'
-import profilePhoto from '../../assets/web_img/choto_logo-removebg.jpg'
-import profilePhoto1 from '../../assets/web_img/choto_logo-removebg.jpg'
-import prof1 from '../../assets/web_img/choto_logo-removebg.jpg'
+import profilePhoto from '../../assets/web_img/choto_logo_1.png'
+import profilePhoto1 from '../../assets/web_img/choto_logo_1.png'
+import prof1 from '../../assets/web_img/choto_logo_1.png'
 import post2 from '../../assets/web_img/post_1.webp'
 import post3 from '../../assets/web_img/pro_4.webp'
 

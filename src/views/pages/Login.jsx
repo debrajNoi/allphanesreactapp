@@ -1,16 +1,12 @@
 import { useState } from 'react'
-import Gmail from '../../assets/web_img/gmail.png'
 import { Link, useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import useForm from '../../useForm'
 import validate from '../../FormValidationRule'
 import axios from 'axios'
 import { config } from '../../constant'
-const getRegisterUrl = config.url.API_URL+'users/login'
-// const getRegisterUrl = "https://allphanesusernode.herokuapp.com/AllphanesuserAdd/login"
 
-// import 'react-phone-number-input/style.css'
-// import PhoneInput from 'react-phone-number-input'
+const getRegisterUrl = config.url.API_URL+'users/login'
 
 export default function Login(props) {
 	const [inputfocus, setInputfocus] = useState({})

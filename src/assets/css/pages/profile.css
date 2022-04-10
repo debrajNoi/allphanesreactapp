@@ -138,6 +138,10 @@
     color: #000;
 }
 
+.back_img{
+    background-image: url('../../web_img/fea-7.png');
+}
+
 /* .trend-sec{
 } */
 .trend-sec-box {
@@ -301,6 +305,33 @@ a {
     justify-content: center;
 }
 
+.banner_content h2{
+    font-family: Open Sans;
+    font-weight: 400;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.content h1{
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.content h4{
+    font-style: italic;
+    font-weight: 400;
+    line-height: 33px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+@media only screen and (min-width: 1200px) {
+    .banner_content h2{
+        width: 90%;
+    }
+}
+
 @media only screen and (max-width: 1200px) {
     .trend-sec-box {
         flex-wrap: wrap;
@@ -393,9 +424,10 @@ a {
 }
 
 #tbd{
-    background-color: #0071BE;
+    /* background-color: #0071BE; */
     /* height: 250px; */
-    padding: 40px;
+    padding: 80px 40px;
+    border-bottom: 1px solid #0004;
 }
 
 #notfound{
@@ -404,7 +436,7 @@ a {
 
 .tbd{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     height: 100%;
     flex-wrap: wrap;
@@ -430,5 +462,29 @@ a {
 }
 
 .fea-img{
-    height: 370px;
+    height: 380px;
+}
+
+.modal_header{
+    padding: 5px 20px;
+    border-bottom: 1px solid #0002;
+    display: flex;
+    text-align: center;
+}
+
+.modal-content{
+    border-radius: 20px;
+    /* background-color: red !important; */
+    overflow: hidden;
+    height: 450px;
+}
+
+.post_img{
+    min-height: 430px;
+    border-right: 1px solid #0001;
+}
+.post_img img{
+    background-size: contain;
+    min-height: 430px;
+    background-position: center;
 }

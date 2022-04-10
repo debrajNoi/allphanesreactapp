@@ -1,6 +1,6 @@
 import React,{ useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import profilePhoto1 from '../../assets/web_img/choto_logo-removebg.jpg'
+import profilePhoto1 from '../../assets/web_img/choto_logo_1.png'
 
 import axios from "axios"
 import { config } from '../../constant.js'
@@ -25,7 +25,7 @@ function LeftNavbar(props) {
 		<section id="leftBar">
                             <div className="left-sec-1">
                                 <div className="left-sec-con"><Link to="/profile">Your free content Events</Link></div>
-                                <div className="left-sec-con"><Link to="/profile">Friends</Link></div>
+                                <div className="left-sec-con"><Link to="/profile">Members</Link></div>
                                 <div className="left-sec-con"><Link to="/profile">Get started</Link></div>
                                 <div className="left-sec-con"><Link to="/profile">FAQ</Link></div>
                             </div>
