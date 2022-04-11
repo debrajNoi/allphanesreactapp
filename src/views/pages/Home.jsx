@@ -7,7 +7,6 @@ import chotologo from '../../assets/web_img/choto_logo_1.png'
 
 function Home() {
   return (
-      
     <main>
         <section id='banner' className='container'>
             <div className="row justify-content-center mt-4">

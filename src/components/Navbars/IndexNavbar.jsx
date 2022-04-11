@@ -33,6 +33,7 @@ function IndexNavbar() {
 					{/* <div className=""> */}
 						<ul className={isActive ? 'nav-middle active': 'nav-middle'}>
 							<li className="nav-item"> <Link className="nav-link" to="/home">Home</Link> </li>
+							{tokens && <li className="nav-item"><Link className="nav-link" to="/profile">My Canvas</Link></li>}
 							<li className="nav-item"><Link className="nav-link" to="/plan">Plan & Pricing</Link></li>
 							<li className="nav-item"><Link className="nav-link" to="/support">Support</Link></li>
 							{!tokens && <li className="nav-item"><Link className="nav-link" to="auth/login">Sign in</Link></li>}

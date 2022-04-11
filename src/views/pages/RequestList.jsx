@@ -7,10 +7,10 @@ import prof1 from '../../assets/web_img/choto_logo_1.png'
 import axios from "axios"
 import { config } from '../../constant'
 
-const getData = config.url.API_URL+'users/members'
+const getData = config.url.API_URL+'services/friendrequests'
 const addFriend = config.url.API_URL+'services/addfriend'
 
-function Members() {
+function RequestList() {
     const [members, setMembers] = useState([])
     const token = localStorage.getItem('token')
 
@@ -79,4 +79,4 @@ function Members() {
   )
 }
 
-export default Members
+export default RequestList

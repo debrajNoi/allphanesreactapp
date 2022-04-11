@@ -19,6 +19,8 @@ import Notfound from './views/pages/Notfound'
 import Index from './views/Index'
 import Home from './views/pages/Home'
 import App from './components/Modals/demo'
+import Members from './views/pages/Members'
+import RequestList from './views/pages/RequestList'
 // import PrivateOutlet from './_helpers/PrivateOutlet'
 
 ReactDOM.render(
@@ -35,6 +37,8 @@ ReactDOM.render(
         <Route path="*" element={<Notfound />} />
         {/* private Route  */}
         <Route path="profile" element={<ProfileLayout />} />
+        <Route path="members" element={<Members />} />
+        <Route path="request-list" element={<RequestList />} />
 
       </Route>
       <Route path="/auth" element={<Layout />} >

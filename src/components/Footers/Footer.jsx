@@ -20,6 +20,8 @@ function Footer() {
               <li><Link to="/about" className='f-links'>About</Link></li>
               <li><Link to="/team" className='f-links'>Team</Link></li>
               <li><Link to="/contact" className='f-links'>Contact</Link></li>
+              <li><Link to="/getstarted" className='f-links'>Get started</Link></li>
+              <li><Link to="/faq" className='f-links'>FAQ</Link></li>
             </ul>
           </div>
         </div>
@@ -33,7 +35,8 @@ function Footer() {
         <div className='f-end'>
             <Link to="/terms" className='f-links'>Terms</Link>
             <Link to="/privacy" className='f-links'>Privacy</Link>
-            <Link to="/" className='f-links'>Acknowledgments</Link>
+            <Link to="/Acknowledgments" className='f-links'>Acknowledgments</Link>
+            
         </div>
       </div>
     </>

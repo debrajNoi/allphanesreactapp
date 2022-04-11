@@ -32,7 +32,6 @@
 }
 
 .profile-photo {
-    /* background: #63BD9D; */
     border-radius: 50%;
 }
 
@@ -93,7 +92,6 @@
     display: flex;
     align-items: center;
     padding-bottom: 3px;
-    /* background-color: red; */
 }
 
 
@@ -142,8 +140,6 @@
     background-image: url('../../web_img/fea-7.png');
 }
 
-/* .trend-sec{
-} */
 .trend-sec-box {
     display: flex;
     gap: 15px;
@@ -153,7 +149,6 @@
     padding: 6px;
     margin-top: 10px;
     overflow: hidden;
-    /* flex-wrap: wrap; */
 }
 
 .trend-video {
@@ -161,7 +156,6 @@
     min-width: 150px;
     width: 100%;
     background: #FFFFFF;
-    /* border-radius: 10px; */
 }
 
 .trend-video iframe {
@@ -191,7 +185,6 @@
 
 .trend-tag {
     background: #FFFFFF;
-    /* background-color: red; */
     padding: 3px 15px;
     border-radius: 15px;
     font-size: 14px;
@@ -203,9 +196,6 @@
     font-weight: 600;
     font-size: 22px;
     line-height: 33px;
-    /* identical to box height */
-
-
     color: #000000;
 }
 
@@ -222,25 +212,19 @@ a {
 .view-post {
     outline: 1px solid #0004;
     padding: 0 15px;
-    /* border-radius: 5px; */
 }
 
 .post-creator {
-    /* background-color: red; */
     width: 100%;
     display: flex;
     height: 60px;
     align-items: center;
-    /* padding: 0 5px; */
-    /* border-bottom: 1px solid #0003; */
 }
 
 .posted-user {
     display: flex;
     align-items: center;
     color: #000;
-    /* background-color: red; */
-    /* width: 100%; */
 }
 
 .posted-user-d {
@@ -424,8 +408,6 @@ a {
 }
 
 #tbd{
-    /* background-color: #0071BE; */
-    /* height: 250px; */
     padding: 80px 40px;
     border-bottom: 1px solid #0004;
 }
@@ -445,9 +427,8 @@ a {
 .circles{
     width: 180px;
     height: 180px;
-    /* background-color: red; */
     border-radius: 50%;
-   margin: 10px;
+    margin: 10px;
 }
 
 .circles img{
@@ -474,7 +455,6 @@ a {
 
 .modal-content{
     border-radius: 20px;
-    /* background-color: red !important; */
     overflow: hidden;
     height: 450px;
 }
@@ -487,4 +467,26 @@ a {
     background-size: contain;
     min-height: 430px;
     background-position: center;
+}
+
+.members{
+    background-color: rgb(253, 250, 250);
+    /* height: 80px; */
+    border-bottom: 1px solid #0001;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    align-items: center;
+}
+
+.pro_img img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.profile_part{
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
