@@ -9,6 +9,8 @@ import post3 from '../../assets/web_img/pro_4.webp'
 
 import axios from "axios"
 import { config } from '../../constant'
+import { Modal } from 'bootstrap'
+import Modalx from '../../components/Modals/Modal'
 
 const createPost = config.url.API_URL+'posts/create'
 const getPosts = config.url.API_URL+'posts/'
@@ -16,7 +18,10 @@ const getPosts = config.url.API_URL+'posts/'
 function Profile() {
     const [postdesc, setPostDesc] = useState()
     const [posts, setPosts] = useState([])
+    const [modalShow, setModalShow] = useState(false)
 
+    const token = localStorage.getItem("token")
+    // console.log(token)
     const getAllPosts = async url => {
         const response = await fetch(url)
         const data = await response.json()
@@ -77,9 +82,22 @@ function Profile() {
             <div className="post-text">
                 {/* <textarea name="postsText" >d</textarea> */}
                 <form action="" onSubmit={handleSubmit}>
-                    <textarea value={postdesc} onChange={handleChange} className='comment-area' />
+                    <textarea onChange={handleChange} value={postdesc}  className='comment-area' required></textarea>
                     <button type='submit' className='btn btn-primary mb-3'>Submit</button>
+                    <button type='button' className='btn btn-secondary mb-3 ml-5' onClick={() => setModalShow(true)}>
+                        Photo
+                    </button>
                 </form>
+                
+        
+                <Modalx
+                    show={modalShow}
+                    onHide={() => setModalShow(false)} 
+                    backdrop="static" 
+                    refId ={token}
+                    postFunc = {getAllPosts}
+                    posts = {setPosts}
+                />
                 
             </div>
         </div>
@@ -89,7 +107,7 @@ function Profile() {
             {/* //loop this  */}
             
             {posts && posts.map(item => {
-                if(item.user_info[0]){
+                // if(item.user_info[0]){
                     return (
                         
                         <div className="view-post pb-3 mt-3">
@@ -101,14 +119,17 @@ function Profile() {
                                     </div>                                   
                                 </Link>
                             </div>
-                            
+                            {item.postImage && <img src={item.postImage} alt="posts" />}
+                            {/* <div className="view-post-des mt-2">
+                                {item.postTitle && item.postTitle}
+                            </div> */}
                             <div className="view-post-des mt-2">
-                                {item.postDescription}
+                                {item.postDescription && item.postDescription}
                             </div>
                         </div>
                     )
-                }
-                return
+                // }
+                // return
             })} 
             {/* end loop  */}
             

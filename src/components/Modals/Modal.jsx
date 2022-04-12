@@ -6,17 +6,27 @@ import axios from "axios"
 import { config } from '../../constant'
 
 const createPost = config.url.API_URL+'posts/creategallery'
-// const getPosts = config.url.API_URL+'posts/'
+const getPosts = config.url.API_URL+'posts/'
 
-function MyVerticallyCenteredModal(props) {
+function Modalx(props) {
   const [fileInputState, setFileInputState] = useState('');
   const [previewSource, setPreviewSource] = useState('');
   const [selectedFile, setSelectedFile] = useState();
   const [successMsg, setSuccessMsg] = useState('');
-  // const [values, setValues] = useState({})
+  const [values, setValues] = useState()
   const [errMsg, setErrMsg] = useState('');
 
-  
+  const getAllPosts = async url => {
+    const response = await fetch(url)
+    const data = await response.json()
+    props.posts(await data.view)
+    console.log('result => ', data.view)
+}
+
+  const handleChange = e =>{
+    setValues(e.target.value)
+  }
+
   const handleFileInputChange = (e) => {
       const file = e.target.files[0];
       previewFile(file);
@@ -34,11 +44,13 @@ function MyVerticallyCenteredModal(props) {
 
   const handleSubmitFile = (e) => {
       e.preventDefault();
+      console.log("selec =>",selectedFile)
       if (!selectedFile) return;
       const reader = new FileReader();
       reader.readAsDataURL(selectedFile);
       reader.onloadend = () => {
           uploadImage(reader.result);
+          setSelectedFile('')
       };
       reader.onerror = () => {
           console.error('AHHHHHHHH!!');
@@ -48,19 +60,19 @@ function MyVerticallyCenteredModal(props) {
 
   const uploadImage = async (base64EncodedImage) => {
     try {
-        // console.log(selectedFile)
-        // const data  = new FormData()
-        // data.append("image",selectedFile)
-        // data.append("text","test")
         const data = {
           image : base64EncodedImage,
-          text : "hala madrid"
+          title : "hala madrid",
+          text : values
         }
         const res = await axios.post(createPost, data)
-        console.log(res)
+        // console.log(res)
         setFileInputState('');
         setPreviewSource('');
-        setSuccessMsg('Image uploaded successfully');
+        setValues('')
+        getAllPosts(getPosts)
+        props.onHide()
+        // setSuccessMsg('Image uploaded successfully');
     } catch (err) {
         console.error(err);
         setErrMsg('Something went wrong!');
@@ -82,7 +94,7 @@ function MyVerticallyCenteredModal(props) {
         className="bs_modal"
       >
         <div className="modal_header text-center">
-          header
+            <div type="button" onClick={closeModal}>X</div>
         </div>
         <Modal.Body className="pd-0">
           <div className="row pd-0">
@@ -91,13 +103,13 @@ function MyVerticallyCenteredModal(props) {
               </div>
               
               <form onSubmit={handleSubmitFile} className="col-lg-5" encType="multipart/formdata">
-                <input type='file' name="postImage" onChange={handleFileInputChange} value={fileInputState} />
-                <Button type="button" onClick={closeModal}>Close</Button>
+                <input type='file' name="postImage" onChange={handleFileInputChange} value={fileInputState} required/>
+                
                 <div className="text">
-                  <label htmlFor="share">Share something here</label>
-                  {/* <textarea name="postText" className="mt-3" rows="4" style={{"width" : "100%"}}></textarea> */}
+                  <label htmlFor="share mt-3">Share something here</label>
+                  <textarea name="postText" className="mt-3" rows="4" style={{"width" : "100%"}} onChange={handleChange} value={values}></textarea>
                 </div>
-                <button type="submit">Post</button>
+                <button type="submit" className="btn btn-primary">Post</button>
               </form>
           </div>    
         </Modal.Body>
@@ -106,21 +118,6 @@ function MyVerticallyCenteredModal(props) {
     );
   }
   
- export default function App() {
-    const [modalShow, setModalShow] = useState(false);
+  export default Modalx
+
   
-    return (
-      <>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-          Launch vertically centered modal
-        </Button>
-  
-        <MyVerticallyCenteredModal
-          show={modalShow}
-          onHide={() => setModalShow(false)} backdrop="static"
-        />
-      </>
-    );
-  }
-  
-//   render(<App />);
