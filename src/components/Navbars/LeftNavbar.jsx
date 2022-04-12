@@ -25,7 +25,7 @@ function LeftNavbar(props) {
 		<section id="leftBar">
                             <div className="left-sec-1">
                                 <div className="left-sec-con"><Link to="/profile">Your free content Events</Link></div>
-                                <div className="left-sec-con"><Link to="/members">Members</Link></div>
+                                {/* <div className="left-sec-con"><Link to="/members">Members</Link></div> */}
                                 <div className="left-sec-con"><Link to="/request-list">Friend Requests</Link></div>
                                 <div className="left-sec-con"><Link to="/members">Members</Link></div>
                                 
