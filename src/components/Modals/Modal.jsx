@@ -16,6 +16,10 @@ function Modalx(props) {
   const [values, setValues] = useState()
   const [errMsg, setErrMsg] = useState('');
 
+  const token=localStorage.getItem('token')
+
+
+
   const getAllPosts = async url => {
     const response = await fetch(url)
     const data = await response.json()
@@ -60,11 +64,12 @@ function Modalx(props) {
 
   const uploadImage = async (base64EncodedImage) => {
     try {
-        const data = {
-          image : base64EncodedImage,
-          title : "hala madrid",
-          text : values
-        }
+      const data = {
+        referenceUserId : token,
+        image : base64EncodedImage,
+        title : "hala madrid",
+        text : values
+      }
         const res = await axios.post(createPost, data)
         // console.log(res)
         setFileInputState('');
