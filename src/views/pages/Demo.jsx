@@ -24,7 +24,7 @@ function Demo(){
         
           setids(id);
           console.log('hh',file);
-        const url = 'http://localhost:8000/api/users/edit/'+console.log( ids);
+        const url = 'https://allphanesusernode.herokuapp.com/api/users/edit/'+console.log( ids);
         axios.post(url,formData,config).then((response)=>{
             alert("image upload success")
         }).catch((err)=>{
