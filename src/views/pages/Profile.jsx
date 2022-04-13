@@ -61,7 +61,10 @@ function Profile() {
         <div className="middle-sec-box cover-photo my-3 p-4" style={{backgroundImage: `url(${coverPhoto})`}}>
             <div className="profile-photo">
                 
-                <img src={prof1} alt="profile" />                                    
+                <img src={prof1} alt="profile" />  
+           {/* <Link to="" className='prfbtn'>profile</Link>                                   */}
+           <input type="file" />
+           
             </div>
             <div className="cover-content">
                 {/* <h2>Hala madrid </h2> */}
