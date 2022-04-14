@@ -14,10 +14,12 @@ import Modalx from '../../components/Modals/Modal'
 
 const createPost = config.url.API_URL+'posts/create'
 const getPosts = config.url.API_URL+'posts/'
+const getUserUrl = config.url.API_URL+'users/'
 
 function Profile() {
     const [postdesc, setPostDesc] = useState()
     const [posts, setPosts] = useState([])
+    const [singleUser, setSingleUser] = useState([])
     const [modalShow, setModalShow] = useState(false)
 
     const token = localStorage.getItem("token")
@@ -29,8 +31,19 @@ function Profile() {
         console.log('result => ', data.view)
     }
 
+    const getSingleUser = async e => {
+        const url = getUserUrl + token
+        console.log('url =>', url)
+        const response = await axios.get(url)
+        const data = response
+        setSingleUser(await data.data.responseData)
+        console.log(singleUser)
+        console.log('resultUser => ', data.data.responseData)
+    }
+
     useEffect(() => {
         getAllPosts(getPosts)
+        getSingleUser()
     },[])
 
     const handleChange = e => {
@@ -58,13 +71,10 @@ function Profile() {
     return (
     <section id="profile">
         {/* cover photo section  */}
-        <div className="middle-sec-box cover-photo my-3 p-4" style={{backgroundImage: `url(${coverPhoto})`}}>
+        <div className="middle-sec-box cover-photo my-3 p-4" style={{backgroundImage: `url(${singleUser.coverPhoto})`}}>
             <div className="profile-photo">
                 
-                <img src={prof1} alt="profile" />  
-           {/* <Link to="" className='prfbtn'>profile</Link>                                   */}
-           <input type="file" />
-           
+                <img src={singleUser.profilePhoto} alt="profile" />                                    
             </div>
             <div className="cover-content">
                 {/* <h2>Hala madrid </h2> */}
@@ -79,7 +89,7 @@ function Profile() {
         {/* create post section  */}
         <div className="middle-sec-box post-area my-3 p-4">
             <div className="profile-photo com-sec">
-                <img src={profilePhoto} alt="profile" />
+                <img src={singleUser.profilePhoto} alt="profile" />
                 
             </div>
             <div className="post-text">
@@ -117,7 +127,7 @@ function Profile() {
                             <div className="post-creator">
                                 <Link to="/profile" className="posted-user">
                                     <div className='posted-user-d'>
-                                        <img src={profilePhoto1} alt="profile" className='posted-profile' />
+                                        <img src={singleUser.profilePhoto} alt="profile" className='posted-profile' />
                                         <div className="post-user-name">{item.user_info[0] && item.user_info[0].firstName+ ' ' + item.user_info[0].lastName}</div>
                                     </div>                                   
                                 </Link>

@@ -15,11 +15,8 @@ function Modalx(props) {
   const [successMsg, setSuccessMsg] = useState('');
   const [values, setValues] = useState()
   const [errMsg, setErrMsg] = useState('');
-
-  const token=localStorage.getItem('token')
-
-
-
+  const token = localStorage.getItem("token")
+ 
   const getAllPosts = async url => {
     const response = await fetch(url)
     const data = await response.json()
@@ -53,7 +50,7 @@ function Modalx(props) {
       const reader = new FileReader();
       reader.readAsDataURL(selectedFile);
       reader.onloadend = () => {
-          uploadImage(reader.result);
+          uploadImage(selectedFile);
           setSelectedFile('')
       };
       reader.onerror = () => {
@@ -64,12 +61,17 @@ function Modalx(props) {
 
   const uploadImage = async (base64EncodedImage) => {
     try {
-      const data = {
-        referenceUserId : token,
-        image : base64EncodedImage,
-        title : "hala madrid",
-        text : values
-      }
+      const data = new FormData()
+      data.append("referenceUserId", token)
+      data.append("image",base64EncodedImage)
+      data.append("title", "hala madrid")
+      data.append("text", values)
+        // const datad = {
+        //   referenceUserId : token,
+        //   image : base64EncodedImage,
+        //   title : "hala madrid",
+        //   text : values
+        // }
         const res = await axios.post(createPost, data)
         // console.log(res)
         setFileInputState('');

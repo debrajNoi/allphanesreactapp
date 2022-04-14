@@ -21,8 +21,8 @@ import Home from './views/pages/Home'
 import App from './components/Modals/demo'
 import Members from './views/pages/Members'
 import RequestList from './views/pages/RequestList'
-// import PrivateOutlet from './_helpers/PrivateOutlet'
 import Demo from './views/pages/Demo'
+// import PrivateOutlet from './_helpers/PrivateOutlet'
 
 ReactDOM.render(
   <Router>
@@ -33,15 +33,15 @@ ReactDOM.render(
         <Route path='terms' element={<Terms />} />
         <Route path='privacy' element={<Privacy />} />
         <Route path="images" element={<Images />} />
-
         
         <Route path="demo" element={<App />} />
         <Route path="*" element={<Notfound />} />
+        <Route path="demos" element={<Demo />} />
+
         {/* private Route  */}
         <Route path="profile" element={<ProfileLayout />} />
         <Route path="members" element={<Members />} />
         <Route path="request-list" element={<RequestList />} />
-        <Route path="demos" element={<Demo />} />
 
       </Route>
       <Route path="/auth" element={<Layout />} >

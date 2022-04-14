@@ -383,7 +383,7 @@ a {
 }
 
 .banner-img{
-    border-radius: 50%;
+border-radius: 50%;
 }
 
 .center-item{
@@ -489,8 +489,4 @@ a {
     display: flex;
     gap: 10px;
     align-items: center;
-}
-.prfbtn{
-    width: 100px;
-    margin-left: 25px;
 }
