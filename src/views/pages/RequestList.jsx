@@ -37,6 +37,7 @@ function RequestList() {
             "referenceUserId" : token,
             "acceptorId" : e.target.id
         }
+        
         console.log("hulu lulu =>",data)
         await axios.post(addFriend, data).then((response)=>{
             console.log(response)
