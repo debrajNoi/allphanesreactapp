@@ -21,9 +21,8 @@ function Profile() {
     const [posts, setPosts] = useState([])
     const [singleUser, setSingleUser] = useState([])
     const [modalShow, setModalShow] = useState(false)
-
     const token = localStorage.getItem("token")
-    // console.log(token)
+    
     const getAllPosts = async url => {
         const response = await fetch(url)
         const data = await response.json()
@@ -33,12 +32,8 @@ function Profile() {
 
     const getSingleUser = async e => {
         const url = getUserUrl + token
-        console.log('url =>', url)
         const response = await axios.get(url)
-        const data = response
-        setSingleUser(await data.data.responseData)
-        console.log(singleUser)
-        console.log('resultUser => ', data.data.responseData)
+        setSingleUser(await response.data.responseData)
     }
 
     useEffect(() => {
@@ -120,22 +115,19 @@ function Profile() {
             {/* //loop this  */}
             
             {posts && posts.map(item => {
-                // if(item.user_info[0]){
                     return (
                         
                         <div className="view-post pb-3 mt-3">
                             <div className="post-creator">
                                 <Link to="/profile" className="posted-user">
                                     <div className='posted-user-d'>
-                                        <img src={singleUser.profilePhoto} alt="profile" className='posted-profile' />
+                                        <img src={item.user_info[0].profilePhoto} alt="profile" className='posted-profile' />
                                         <div className="post-user-name">{item.user_info[0] && item.user_info[0].firstName+ ' ' + item.user_info[0].lastName}</div>
                                     </div>                                   
                                 </Link>
                             </div>
                             {item.postImage && <img src={item.postImage} alt="posts" />}
-                            {/* <div className="view-post-des mt-2">
-                                {item.postTitle && item.postTitle}
-                            </div> */}
+                            
                             <div className="view-post-des mt-2">
                                 {item.postDescription && item.postDescription}
                             </div>

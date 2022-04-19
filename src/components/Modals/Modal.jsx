@@ -59,27 +59,19 @@ function Modalx(props) {
       };
   };
 
-  const uploadImage = async (base64EncodedImage) => {
+  const uploadImage = async (image) => {
     try {
       const data = new FormData()
       data.append("referenceUserId", token)
-      data.append("image",base64EncodedImage)
+      data.append("image",image)
       data.append("title", "hala madrid")
       data.append("text", values)
-        // const datad = {
-        //   referenceUserId : token,
-        //   image : base64EncodedImage,
-        //   title : "hala madrid",
-        //   text : values
-        // }
-        const res = await axios.post(createPost, data)
-        // console.log(res)
-        setFileInputState('');
-        setPreviewSource('');
-        setValues('')
-        getAllPosts(getPosts)
-        props.onHide()
-        // setSuccessMsg('Image uploaded successfully');
+      const res = await axios.post(createPost, data)
+      setFileInputState('');
+      setPreviewSource('');
+      setValues('')
+      getAllPosts(getPosts)
+      props.onHide()
     } catch (err) {
         console.error(err);
         setErrMsg('Something went wrong!');
@@ -110,8 +102,9 @@ function Modalx(props) {
               </div>
               
               <form onSubmit={handleSubmitFile} className="col-lg-5" encType="multipart/formdata">
-                <input type='file' name="postImage" onChange={handleFileInputChange} value={fileInputState} required/>
-                
+                <label> image
+                  <input type='file' name="postImage" onChange={handleFileInputChange} value={fileInputState} required/>
+                </label>
                 <div className="text">
                   <label htmlFor="share mt-3">Share something here</label>
                   <textarea name="postText" className="mt-3" rows="4" style={{"width" : "100%"}} onChange={handleChange} value={values}></textarea>

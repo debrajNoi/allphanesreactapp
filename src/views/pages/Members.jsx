@@ -52,7 +52,7 @@ function Members() {
                 </div>
                 <div className="col-lg-6 col-md-6 shadow-sm">
                     <h4 className='my-4'>Members</h4>
-                    {members&& members.map((items, index)=>{
+                    {members && members.map((items, index)=>{
                         console.log('items=>', items)
                         return(
                             <div className="members" key={index}>

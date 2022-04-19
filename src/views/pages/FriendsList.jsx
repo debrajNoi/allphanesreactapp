@@ -7,21 +7,25 @@ import prof1 from '../../assets/web_img/choto_logo_1.png'
 import axios from "axios"
 import { config } from '../../constant'
 
-const getData = config.url.API_URL+'services/acceptrequest'
+const getData = config.url.API_URL+'services/friendslista'
+const getData2 = config.url.API_URL+'services/friendslist'
 const acceptRequest = config.url.API_URL+'services/requestaccept'
 
-function RequestList() {
+function FriendsList() {
     const [members, setMembers] = useState([])
+    const [members2, setMembers2] = useState([])
     const token = localStorage.getItem('token')
 
-    const getRequestList = async () => {
+    const getFriendsList = async () => {
         const response = await axios.get(getData+'/'+token)
         setMembers(await response.data.view)
-        console.log("req res =>",response)
+        const response2 = await axios.get(getData2+'/'+token)
+        setMembers2(await response2.data.view)
+        console.log("req res2 =>",response2)
     }
 
     useEffect(() => {
-        getRequestList()
+        getFriendsList()
     },[])
 
     if(!localStorage.getItem('token')) {
@@ -34,7 +38,7 @@ function RequestList() {
         }
         console.log("hulu lulu =>",e.target.id)
         const response = await axios.post(acceptRequest, data)
-        if(response) getRequestList()
+        if(response) getFriendsList()
     }
     
   return (
@@ -63,6 +67,23 @@ function RequestList() {
                             </div>
                         )
                     })}
+                    {members2 && members2.map((items, index)=>{
+                        console.log('items=>', items)
+                        return(
+                            <div className="members" key={index}>
+                                <div className="profile_part">
+                                    <div className="pro_img">
+                                        <img src={prof1} alt="members profile" />
+                                    </div>
+                                    <div className="pro_details">
+                                        <div className="pro_name">{items.user_info.firstName+' '+items.user_info.lastName}</div>
+                                    </div>
+                                    {/* <div>{items._id}</div> */}
+                                </div>
+                                <button className="left_part btn btn-primary" id={items._id} onClick={handleClick}>Accept</button>
+                            </div>
+                        )
+                    })}
                 </div>
                 <div className="col-lg-4 col-md-3">
                     <RightBar />
@@ -74,4 +95,4 @@ function RequestList() {
   )
 }
 
-export default RequestList
+export default FriendsList

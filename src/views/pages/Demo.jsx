@@ -37,6 +37,9 @@ function Demo(){
             <input type="file" name="coverPhoto" onChange={handlePhotos}/>
             <button type="submit">Upload</button>
         </form>
+        <label> Enter Your File
+            <input type="file"  />
+        </label> 
         </>
     )
 }

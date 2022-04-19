@@ -91,7 +91,10 @@ function MyVerticallyCenteredModal(props) {
               </div>
               
               <form onSubmit={handleSubmitFile} className="col-lg-5" encType="multipart/formdata">
-                <input type='file' name="postImage" onChange={handleFileInputChange} value={fileInputState} />
+                <label> Enter Your File
+                  <input type='file' name="postImage" accept=".jpg, .jpeg, .png" onChange={handleFileInputChange} value={fileInputState} />
+                </label>
+                <input type='file' name="postImage" accept=".jpg, .jpeg, .png" onChange={handleFileInputChange} value={fileInputState} />
                 <Button type="button" onClick={closeModal}>Close</Button>
                 <div className="text">
                   <label htmlFor="share">Share something here</label>
