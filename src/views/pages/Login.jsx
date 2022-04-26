@@ -26,9 +26,8 @@ export default function Login(props) {
 		.then((response) => {
 			if(response.data.status === 200){
                 console.log(response)
-				const tokens = response.data.id
+				const tokens = response.data.responseData.id
 				localStorage.setItem('token', tokens)
-                // console.log(tokens)
                 navigate("/profile")
 			}else{
 				setErrMsg(response.data.message) 

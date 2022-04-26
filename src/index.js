@@ -24,6 +24,8 @@ import RequestList from './views/pages/RequestList'
 import Demo from './views/pages/Demo'
 import SendingList from './views/pages/SendingList'
 import FriendsList from './views/pages/FriendsList'
+import Gellarys from './views/pages/Gellary'
+import UserProfile from './views/pages/UserProfile'
 // import PrivateOutlet from './_helpers/PrivateOutlet'
 
 ReactDOM.render(
@@ -44,8 +46,10 @@ ReactDOM.render(
         <Route path="profile" element={<ProfileLayout />} />
         <Route path="members" element={<Members />} />
         <Route path="request-list" element={<RequestList />} />
-        <Route path="sended-list" element={<SendingList />} />
+        <Route path="sent-list" element={<SendingList />} />
         <Route path="friends-list" element={<FriendsList />} />
+        <Route path="gellary-list" element={<Gellarys />} />
+        <Route path="user-profile/:id" element={<UserProfile />} />
 
       </Route>
       <Route path="/auth" element={<Layout />} >

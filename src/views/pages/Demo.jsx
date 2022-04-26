@@ -15,11 +15,6 @@ function Demo(){
         formData.append("profilePhoto",photos.profilePhoto)
         formData.append("coverPhoto",photos.coverPhoto)
         formData.append("id",id)
-        const config={
-            headers:{
-                'content-type':'multipart/form-data',
-            }
-        }
 
         const response = await axios.post(editUser,formData)
         response ? alert("image upload success") : alert("image bll")

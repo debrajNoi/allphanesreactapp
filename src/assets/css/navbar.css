@@ -10,6 +10,7 @@
     align-items: center;
     position: sticky;
     top: 0;
+    z-index: 999;
 }
 .index-header a{
     text-decoration: none !important;
@@ -74,6 +75,9 @@ border-radius: 20px;
 
 .f-links{
     color: #000;
+}
+.sign-out-btn{
+    background-color: rgb(112, 184, 81);
 }
 
 .f-links:hover{

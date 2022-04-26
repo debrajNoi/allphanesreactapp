@@ -85,18 +85,6 @@ function Home() {
         <section id='tbd' className=''>
             <div className="tbd container text-center">
                 <h1 className='text-center'>Content  To Be Decided</h1>
-                {/* <div className="circles">
-                    <img src={chotologo} alt="chotologo" />
-                </div>
-                <div className="circles">
-                    <img src={chotologo} alt="chotologo" />
-                </div>
-                <div className="circles">
-                    <img src={chotologo} alt="chotologo" />
-                </div>
-                <div className="circles">
-                    <img src={chotologo} alt="chotologo" />
-                </div> */}
             </div>
         </section>
     </main>

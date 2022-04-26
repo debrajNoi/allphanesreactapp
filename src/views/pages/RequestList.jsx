@@ -2,12 +2,12 @@ import React,{ useEffect, useState } from 'react'
 import {Navigate} from 'react-router-dom'
 import LeftNavbar from '../../components/Navbars/LeftNavbar'
 import RightBar from '../../components/Navbars/RightBar'
-import prof1 from '../../assets/web_img/choto_logo_1.png'
+import prof1 from '../../assets/web_img/choto-log-img2.jpg'
 
 import axios from "axios"
 import { config } from '../../constant'
 
-const getData = config.url.API_URL+'services/acceptrequest'
+const getData = config.url.API_URL+'services/acceptrequest/'
 const acceptRequest = config.url.API_URL+'services/requestaccept'
 
 function RequestList() {
@@ -15,8 +15,8 @@ function RequestList() {
     const token = localStorage.getItem('token')
 
     const getRequestList = async () => {
-        const response = await axios.get(getData+'/'+token)
-        setMembers(await response.data.view)
+        const response = await axios.get(getData + token)
+        setMembers(await response.data.responseData)
         console.log("req res =>",response)
     }
 
@@ -44,8 +44,8 @@ function RequestList() {
                 <div className="col-lg-2 col-md-3">
                     <LeftNavbar />
                 </div>
-                <div className="col-lg-6 col-md-6 shadow-sm">
-                    <h4 className='my-4'>Requsts</h4>
+                <div className="col-lg-6 col-md-6 shadow-sm members-sec">
+                    <h4 className='my-4'>Request</h4>
                     {members && members.map((items, index)=>{
                         console.log('items=>', items)
                         return(
@@ -59,7 +59,7 @@ function RequestList() {
                                     </div>
                                     {/* <div>{items._id}</div> */}
                                 </div>
-                                <button className="left_part btn btn-primary" id={items._id} onClick={handleClick}>Accept</button>
+                                <button className="left_part btn btn-primary add-btn" id={items._id} onClick={handleClick}>Accept</button>
                             </div>
                         )
                     })}

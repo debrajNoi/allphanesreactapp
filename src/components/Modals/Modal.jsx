@@ -13,7 +13,7 @@ function Modalx(props) {
   const [previewSource, setPreviewSource] = useState('');
   const [selectedFile, setSelectedFile] = useState();
   const [successMsg, setSuccessMsg] = useState('');
-  const [values, setValues] = useState()
+  const [values, setValues] = useState('')
   const [errMsg, setErrMsg] = useState('');
   const token = localStorage.getItem("token")
  
@@ -28,14 +28,14 @@ function Modalx(props) {
     setValues(e.target.value)
   }
 
-  const handleFileInputChange = (e) => {
+  const handleFileInputChange = e => {
       const file = e.target.files[0];
       previewFile(file);
       setSelectedFile(file);
       setFileInputState(e.target.value);
   };
 
-  const previewFile = (file) => {
+  const previewFile = file => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = () => {
@@ -43,7 +43,7 @@ function Modalx(props) {
       };
   };
 
-  const handleSubmitFile = (e) => {
+  const handleSubmitFile = e => {
       e.preventDefault();
       console.log("selec =>",selectedFile)
       if (!selectedFile) return;
@@ -80,7 +80,6 @@ function Modalx(props) {
 
     const closeModal = e =>{
       props.onHide()
-      // setPreview(undefined)
       return () => URL.revokeObjectURL(selectedFile)
     }
 
@@ -93,7 +92,7 @@ function Modalx(props) {
         className="bs_modal"
       >
         <div className="modal_header text-center">
-            <div type="button" onClick={closeModal}>X</div>
+          <div type="button" onClick={closeModal}>X</div>
         </div>
         <Modal.Body className="pd-0">
           <div className="row pd-0">
@@ -107,7 +106,7 @@ function Modalx(props) {
                 </label>
                 <div className="text">
                   <label htmlFor="share mt-3">Share something here</label>
-                  <textarea name="postText" className="mt-3" rows="4" style={{"width" : "100%"}} onChange={handleChange} value={values}></textarea>
+                  <textarea name="postText" className="mt-3" rows="4" style={{"width" : "100%"}} onChange={handleChange} value={values || ''}></textarea>
                 </div>
                 <button type="submit" className="btn btn-primary">Post</button>
               </form>

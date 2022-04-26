@@ -9,6 +9,7 @@ const onlineURL = config.url.API_URL+'users/online'
 
 function LeftNavbar(props) {	
    const [onlineUsers, setOnlineUsers] = useState([])
+   const token = localStorage.getItem('token')
 
    const getOnlineUsers = async () =>{
       const response = await axios.get(onlineURL)
@@ -23,11 +24,13 @@ function LeftNavbar(props) {
 	return (
 		<section id="leftBar">
          <div className="left-sec-1">
-            <div className="left-sec-con"><Link to="/profile">Your free content Events</Link></div>
+            <div className="left-sec-con"><Link to="/profile">Events</Link></div>
+            <div className="left-sec-con"><Link to={"/user-profile/" + token}>My Space</Link></div>                                
             <div className="left-sec-con"><Link to="/members">Members</Link></div>
             <div className="left-sec-con"><Link to="/request-list">Friend Requests</Link></div>                                
-            <div className="left-sec-con"><Link to="/sended-list">Sended Requests</Link></div>                                
-            <div className="left-sec-con"><Link to="/friends-list">Friends List</Link></div>                                
+            <div className="left-sec-con"><Link to="/sent-list">Sent Requests</Link></div>                                
+            <div className="left-sec-con"><Link to="/friends-list">Friends List</Link></div>
+            <div className="left-sec-con"><Link to="/gellary-list">Gallery List</Link></div>                                
          </div>
          <div className="online-component">
             <div className="online-title">
@@ -35,9 +38,9 @@ function LeftNavbar(props) {
             </div>
             {/* loop  */}
             
-               {onlineUsers && onlineUsers.map(user => {
+               {onlineUsers && onlineUsers.map((user, index) => {
                   return (
-                     <Link to="/profile" className="online-users">
+                     <Link to="/profile" className="online-users" key={index}>
                         <div className="online-Profile">
                            <img src={user.profilePhoto ? user.profilePhoto : profilePhoto1} alt="profile not found" />
                         </div> 

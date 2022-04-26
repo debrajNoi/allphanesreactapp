@@ -1,8 +1,8 @@
 import React,{ useEffect, useState } from 'react'
-import {Navigate} from 'react-router-dom'
+import {Link,Navigate} from 'react-router-dom'
 import LeftNavbar from '../../components/Navbars/LeftNavbar'
 import RightBar from '../../components/Navbars/RightBar'
-import prof1 from '../../assets/web_img/choto_logo_1.png'
+import prof1 from '../../assets/web_img/choto-log-img2.jpg'
 
 import axios from "axios"
 import { config } from '../../constant'
@@ -50,7 +50,7 @@ function Members() {
                 <div className="col-lg-2 col-md-3">
                     <LeftNavbar />
                 </div>
-                <div className="col-lg-6 col-md-6 shadow-sm">
+                <div className="col-lg-6 col-md-6 shadow-sm members-sec">
                     <h4 className='my-4'>Members</h4>
                     {members && members.map((items, index)=>{
                         console.log('items=>', items)
@@ -58,13 +58,20 @@ function Members() {
                             <div className="members" key={index}>
                                 <div className="profile_part">
                                     <div className="pro_img">
-                                        <img src={prof1} alt="members profile" />
+                                        {items.profilePhoto ?
+                                            (<img src={items.profilePhoto} alt="members profile" />)
+                                            : (<img src={prof1} alt="members profile" />)
+                                        }
                                     </div>
                                     <div className="pro_details">
                                         <div className="pro_name">{items.firstName+' '+items.lastName}</div>
                                     </div>
                                 </div>
-                                <button className="left_part btn btn-primary" id={items.id} onClick={handleClick}>Add Friend</button>
+                                <div className="btn-divs">
+                                {/* className="left_part btn btn-success add-btn" */}
+                                    <a className='add-link'  id={items.id} onClick={handleClick}>Add Friend</a>
+                                    <Link className="left_part btn btn-success add-btn" to={'/user-profile/' + items.id}>See Profile</Link>
+                                </div>
                             </div>
                         )
                     })}

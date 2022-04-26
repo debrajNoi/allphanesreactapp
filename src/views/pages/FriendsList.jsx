@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from 'react'
-import {Navigate} from 'react-router-dom'
+import {Link, Navigate} from 'react-router-dom'
 import LeftNavbar from '../../components/Navbars/LeftNavbar'
 import RightBar from '../../components/Navbars/RightBar'
 import prof1 from '../../assets/web_img/choto_logo_1.png'
@@ -7,9 +7,8 @@ import prof1 from '../../assets/web_img/choto_logo_1.png'
 import axios from "axios"
 import { config } from '../../constant'
 
-const getData = config.url.API_URL+'services/friendslista'
-const getData2 = config.url.API_URL+'services/friendslist'
-const acceptRequest = config.url.API_URL+'services/requestaccept'
+const getData = config.url.API_URL+'services/friendslists/'
+const deleteDataUrl = config.url.API_URL+'services/requests/'
 
 function FriendsList() {
     const [members, setMembers] = useState([])
@@ -17,11 +16,10 @@ function FriendsList() {
     const token = localStorage.getItem('token')
 
     const getFriendsList = async () => {
-        const response = await axios.get(getData+'/'+token)
-        setMembers(await response.data.view)
-        const response2 = await axios.get(getData2+'/'+token)
-        setMembers2(await response2.data.view)
-        console.log("req res2 =>",response2)
+        const response = await axios.get(getData + token)
+        console.log(response)
+        setMembers(await response.data.responseData1)
+        setMembers2(await response.data.responseData2)
     }
 
     useEffect(() => {
@@ -33,11 +31,7 @@ function FriendsList() {
     }
 
     const handleClick = async e =>{
-        const data = {
-            "id" : e.target.id
-        }
-        console.log("hulu lulu =>",e.target.id)
-        const response = await axios.post(acceptRequest, data)
+        const response = await axios.delete(deleteDataUrl + e.target.id)
         if(response) getFriendsList()
     }
     
@@ -48,39 +42,48 @@ function FriendsList() {
                 <div className="col-lg-2 col-md-3">
                     <LeftNavbar />
                 </div>
-                <div className="col-lg-6 col-md-6 shadow-sm">
-                    <h4 className='my-4'>Requsts</h4>
+                <div className="col-lg-6 col-md-6 shadow-sm members-sec">
+                    <h4 className='my-4'>Friends</h4>
                     {members && members.map((items, index)=>{
                         console.log('items=>', items)
                         return(
                             <div className="members" key={index}>
                                 <div className="profile_part">
                                     <div className="pro_img">
-                                        <img src={prof1} alt="members profile" />
+                                        {items.referenceUserId.profilePhoto ?
+                                            (<img src={items.referenceUserId.profilePhoto} alt="members profile" />)
+                                            : (<img src={prof1} alt="members profile" />)
+                                        }
                                     </div>
                                     <div className="pro_details">
-                                        <div className="pro_name">{items.user_info.firstName+' '+items.user_info.lastName}</div>
+                                        <div className="pro_name">{items.referenceUserId.firstName+' '+items.referenceUserId.lastName}</div>
                                     </div>
-                                    {/* <div>{items._id}</div> */}
                                 </div>
-                                <button className="left_part btn btn-primary" id={items._id} onClick={handleClick}>Accept</button>
+                                <div className="btn-divs">
+                                    <button className="left_part btn btn-primary unfriend-btn" id={items._id} onClick={handleClick}>unfriend</button>
+                                    <Link className="left_part btn btn-success add-btn" to={'/user-profile/' + items.referenceUserId.id}>See Profile</Link>
+                                </div>
                             </div>
                         )
                     })}
                     {members2 && members2.map((items, index)=>{
-                        console.log('items=>', items)
                         return(
                             <div className="members" key={index}>
                                 <div className="profile_part">
                                     <div className="pro_img">
-                                        <img src={prof1} alt="members profile" />
+                                        {items.acceptorId.profilePhoto ?
+                                            (<img src={items.acceptorId.profilePhoto} alt="members profile" />)
+                                            : (<img src={prof1} alt="members profile" />)
+                                        }
                                     </div>
                                     <div className="pro_details">
-                                        <div className="pro_name">{items.user_info.firstName+' '+items.user_info.lastName}</div>
+                                        <div className="pro_name">{items.acceptorId.firstName+' '+items.acceptorId.lastName}</div>
                                     </div>
-                                    {/* <div>{items._id}</div> */}
                                 </div>
-                                <button className="left_part btn btn-primary" id={items._id} onClick={handleClick}>Accept</button>
+                                <div className="btn-divs">
+                                    <button className="left_part btn btn-primary unfriend-btn" id={items._id} onClick={handleClick}>unfriend</button>
+                                    <Link className="left_part btn btn-success add-btn" to={'/user-profile/' + items.acceptorId.id}>See Profile</Link>
+                                </div>
                             </div>
                         )
                     })}

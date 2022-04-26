@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import logo from '../../assets/web_img/main_logo.png'
+import axios from "axios"
+import { config } from '../../constant'
 
-
+const usersUrl = config.url.API_URL+'users/'
 function IndexNavbar() {
 	const [isActive, setActive] = useState(false);
 	// const [auth, setAuth] = useState(false)
@@ -12,12 +14,17 @@ function IndexNavbar() {
 		setActive(!isActive);
 	};
 
-	const logout = e => {
-		localStorage.clear()
-		navigate("auth/login")
+	const tokens = localStorage.getItem('token')
+	
+	const logout = async e => {
+		const response = await axios.patch(usersUrl + tokens,{isActive : false})
+		if(response){
+			localStorage.clear()
+			navigate("auth/login")
+		}
 	}
 
-	const tokens = localStorage.getItem('token')
+	
     // if(localStorage.getItem('token') != '') setAuth(true)
 	
 	return (
@@ -38,7 +45,7 @@ function IndexNavbar() {
 							<li className="nav-item"><Link className="nav-link" to="/support">Support</Link></li>
 							{!tokens && <li className="nav-item"><Link className="nav-link" to="auth/login">Sign in</Link></li>}
 							{!tokens && <li className="nav-item"><Link className="nav-link btn-signs shadow-sm" to="auth/registration">Sign up</Link></li>}
-							{tokens && <li className="nav-item"><button className="btn btn-signs shadow-sm" onClick={logout}>Sign Out</button></li>}
+							{tokens && <li className="nav-item"><button className="btn btn-signs shadow-sm sign-out-btn" onClick={logout}>Sign Out</button></li>}
 								
 						</ul>
 						

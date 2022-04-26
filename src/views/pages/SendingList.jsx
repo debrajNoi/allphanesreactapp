@@ -2,21 +2,22 @@ import React,{ useEffect, useState } from 'react'
 import {Navigate} from 'react-router-dom'
 import LeftNavbar from '../../components/Navbars/LeftNavbar'
 import RightBar from '../../components/Navbars/RightBar'
-import prof1 from '../../assets/web_img/choto_logo_1.png'
+import prof1 from '../../assets/web_img/choto-log-img2.jpg'
 
 import axios from "axios"
 import { config } from '../../constant'
 
-const getData = config.url.API_URL+'services/requests'
+const getDataUrl = config.url.API_URL+'services/requests/'
+const deleteDataUrl = config.url.API_URL+'services/requests/'
 
 function SendingList() {
     const [members, setMembers] = useState([])
     const token = localStorage.getItem('token')
 
     const getSendingList = async () => {
-        const response = await axios.get(getData+'/'+token)
+        const response = await axios.get(getDataUrl + token)
         console.log(response)
-        setMembers(await response.data.view)
+        setMembers(await response.data.responseData)
     }
 
     useEffect(() => {
@@ -28,7 +29,7 @@ function SendingList() {
     }
 
     const handleClick = async e =>{
-        const response = await axios.delete(getData+ '/' + e.target.id)
+        const response = await axios.delete(deleteDataUrl + e.target.id)
         if(response) getSendingList()
     }
 
@@ -39,21 +40,24 @@ function SendingList() {
                     <div className="col-lg-2 col-md-3">
                         <LeftNavbar />
                     </div>
-                    <div className="col-lg-6 col-md-6 shadow-sm">
-                        <h4 className='my-4'>Sended</h4>
+                    <div className="col-lg-6 col-md-6 shadow-sm members-sec">
+                        <h4 className='my-4'>Sent</h4>
                         {members && members.map((items, index)=>{
                             return(
                                 <div className="members" key={index}>
                                     <div className="profile_part">
                                         <div className="pro_img">
-                                            <img src={prof1} alt="members profile" />
+                                            {items.acceptorId.profilePhoto ? (<img src={items.acceptorId.profilePhoto} alt="members profile" />) 
+                                            : (<img src={prof1} alt="members profile" />)}
+                                            
                                         </div>
                                         <div className="pro_details">
-                                            <div className="pro_name">{items.user_info.firstName + ' ' + items.user_info.lastName}</div>
+                                            <div className="pro_name">{items.acceptorId.firstName + ' ' + items.acceptorId.lastName}</div>
                                         </div>
                                         {/* <div>{items._id}</div> */}
                                     </div>
-                                    <button className="left_part btn btn-primary" id={items._id} onClick={handleClick}>cancel</button>
+                                    
+                                    <button className="left_part btn btn-primary add-btn" id={items._id} onClick={handleClick}>cancel</button>
                                 </div>
                             )
                         })}

@@ -14,7 +14,7 @@ export default function ProfileLayout() {
             {/* <div className='navbar'>Nav bar</div> */}
             <div className='container-fluid'>
                 <div className='row'>
-                    <div className="col-lg-2 col-md-3">
+                    <div className="col-lg-2 col-md-3 left-bar-sec">
                        <LeftNavbar /> 
                     </div>
                     {/* Middle section  */}
