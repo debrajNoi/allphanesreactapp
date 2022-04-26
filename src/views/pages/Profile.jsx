@@ -8,14 +8,14 @@ import Modaly from '../../components/Modals/Modaly'
 import Modalz from '../../components/Modals/Modalz'
 import prof1 from '../../assets/web_img/choto_logo_1.png'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faEdit} from "@fortawesome/free-solid-svg-icons"
+import {faComment, faEdit} from "@fortawesome/free-solid-svg-icons"
 import {faCamera} from "@fortawesome/free-solid-svg-icons"
 import {faImage} from "@fortawesome/free-solid-svg-icons"
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons"
-
-
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 const createPost = config.url.API_URL+'posts/create'
+const likePost = config.url.API_URL+'social/like'
 const getPosts = config.url.API_URL+'posts/'
 const getUserUrl = config.url.API_URL+'users/'
 
@@ -41,10 +41,18 @@ function Profile() {
         setSingleUser(await response.data.responseData)
     }
 
-    useEffect(() => {
-        getAllPosts(getPosts)
-        getSingleUser()
-    },[])
+    const handleLikeClick = async (postId, userId) =>{
+        console.log("click>>")
+        const dataPost = await axios.post(likePost, {
+            referenceUserId:userId,
+            referencePostId:postId,
+            // isLike:true
+        })
+        if(dataPost){
+            console.log(dataPost)
+        }
+        // console.log("event>>", postId + userId)
+    }
 
     const handleChange = e => {
         setPostDesc(e.target.value)
@@ -67,6 +75,11 @@ function Profile() {
 		    console.log('error=>',err)
 		})
     }
+
+    useEffect(() => {
+        getAllPosts(getPosts)
+        getSingleUser()
+    },[])
   
     return (
     <section id="profile">
@@ -77,9 +90,10 @@ function Profile() {
                     </button>
             <div className="profile-photo2 profile-sec2 profile-photo">
             <button type='button' className='btn btn-secondary mb-3 ml-5 mx-1 profile-btn' onClick={() => setModalShow1(true)}>
-                        <FontAwesomeIcon icon={faCamera}></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faCamera} className="shadow"></FontAwesomeIcon>
                     </button>
-                <img src={singleUser.profilePhoto} alt="profile" />                                    
+                {singleUser.profilePhoto ? (<img src={singleUser.profilePhoto} alt="profile" />) 
+                : (<img src={prof1} alt="profile" />) }                                    
             </div>
             <div className="cover-content"></div>
         </div>
@@ -94,8 +108,9 @@ function Profile() {
         <div className="middle-sec-box post-area my-3 p-4 profile-sec2">
         
             <div className="profile-photo2 profile-sec2 com-sec">
+            {singleUser.profilePhoto ? (<img className='sub-profile-pic' src={singleUser.profilePhoto} alt="profile" />) 
+                : (<img src={prof1} className='sub-profile-pic' alt="profile" />) }  
             
-                <img className='sub-profile-pic' src={singleUser.profilePhoto} alt="profile" />
             </div>
             
             <div className="post-text">
@@ -143,12 +158,13 @@ function Profile() {
                     return (
                         <div className="view-post pb-3 mt-3" key={index}>
                             <div className="post-creator">
-                                <Link to="/profile" className="posted-user">
+                                <Link to={"/user-profile/"+ item.user_info[0]._id} className="posted-user">
                                     <div className='posted-user-d'>
-                                    {/* {item.user_info[0].profilePhoto ? 
-                                    (<img src={item.user_info[0].profilePhoto} alt="profile" className='posted-profile' />)
-                                    :(<img src={prof1} alt="profile" className='posted-profile' />)
-                                } */}
+                                    <div className="pro_img">
+                                        {item.user_info[0].profilePhoto ? (<img src={item.user_info[0].profilePhoto} alt="members profile" />) 
+                                        : (<img src={prof1} alt="members profile" />)}
+                                        
+                                    </div>
                                         {/* <img src={item.user_info[0].profilePhoto && item.user_info[0].profilePhoto} alt="profile" className='posted-profile' /> */}
                                         <div className="post-user-name">{item.user_info[0] && item.user_info[0].firstName+ ' ' + item.user_info[0].lastName}</div>
                                     </div>                                   
@@ -158,6 +174,16 @@ function Profile() {
                             <div className="view-post-des mt-2">
                                 {item.postDescription && item.postDescription}
                             </div>
+                            <div className='post-action-sec d-flex gap-2'>
+                                    <div className="like" onClick={() => handleLikeClick(item._id, item.user_info[0]._id)}>
+                                        <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon> 
+                                    </div>
+                                
+                                {/* <div className="comment" onClick={handleLikeClick}>
+                                    <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
+                                </div> */}
+                            </div>
+
                         </div>
                     )
                 // }

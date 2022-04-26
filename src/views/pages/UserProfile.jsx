@@ -5,6 +5,7 @@ import axios from "axios"
 import { config } from '../../constant'
 import RightBar from '../../components/Navbars/RightBar'
 import LeftNavbar from '../../components/Navbars/LeftNavbar'
+import prof1 from '../../assets/web_img/choto_logo_1.png'
 
 const createPost = config.url.API_URL+'posts/create'
 const getPosts = config.url.API_URL+'posts/'
@@ -70,7 +71,10 @@ function UserProfile(props) {
 
                         <div className="middle-sec-box cover-photo my-3 p-1 cover-sec" style={{backgroundImage: `url(${singleUser.coverPhoto? singleUser.coverPhoto : ''})`}}>
                             <div className="profile-photo profile-sec profile-photo2">
-                                <img src={singleUser.profilePhoto} alt="profile" />                                    
+                                {singleUser.profilePhoto ?
+                                (<img src={singleUser.profilePhoto} alt="profile" />)
+                            : (<img src={prof1} alt="profile" />)}  
+
                             </div>
                             <div className="cover-content"></div>
                         </div>
@@ -95,7 +99,7 @@ function UserProfile(props) {
                                 {singleUser.profilePhoto ? (
                                     <img src={singleUser.profilePhoto} alt="profile" className='posted-profile' />
                                     // <img src={singleUser.profilePhoto} alt='profile' />
-                                ):(<div>gol</div>)}
+                                ):(<img src={prof1} alt="profile" className='posted-profile'/>)}
                                 {/* <img src={item.user_info[0].profilePhoto && item.user_info[0].profilePhoto} alt="profile" className='posted-profile' /> */}
                                 <div className="post-user-name">{singleUser && singleUser.firstName+ ' ' + singleUser.lastName}</div>
                             </div>                                   

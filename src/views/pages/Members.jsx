@@ -69,7 +69,7 @@ function Members() {
                                 </div>
                                 <div className="btn-divs">
                                 {/* className="left_part btn btn-success add-btn" */}
-                                    <a className='add-link'  id={items.id} onClick={handleClick}>Add Friend</a>
+                                    <div className="left_part btn btn-success add-btn"  id={items.id} onClick={handleClick}>Add Friend</div>
                                     <Link className="left_part btn btn-success add-btn" to={'/user-profile/' + items.id}>See Profile</Link>
                                 </div>
                             </div>
