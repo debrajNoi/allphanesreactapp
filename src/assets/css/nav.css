@@ -2,7 +2,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .index-header{
-    background: #05A081;
+    /* background: #05A081; */
     color: #000;
     height: 80px;
     display: flex;
@@ -82,9 +82,10 @@ border-radius: 20px;
     height: 60px;
 }
 
-#footer{
+/* #footer{
     padding: 60px 80px;
-}
+    background-color: #05A081;
+} */
 
 .social-img{
     width: 200px !important;

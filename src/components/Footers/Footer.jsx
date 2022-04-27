@@ -6,7 +6,7 @@ import social from '../../assets/web_img/social_for_now1.png'
 function Footer() {
   return (
     <>
-      <section id="footer">
+      {/* <footer id="footer">
         <div className="row">
           <div className="col-lg-6 col-md-6">
             <h2>Follow us on :</h2>
@@ -25,7 +25,7 @@ function Footer() {
             </ul>
           </div>
         </div>
-      </section>
+      </footer> */}
 
       <div className='footer-end'>
         <div>© 2022 Smule, Inc. All Rights Reserved.</div>

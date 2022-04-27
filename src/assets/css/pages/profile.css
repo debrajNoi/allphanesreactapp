@@ -155,10 +155,10 @@ overflow-y: scroll;
 }
 
 .online-Profile {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    margin-right: 15px;
+    /* margin-right: 15px; */
 }
 
 .online-Profile img {
@@ -181,8 +181,11 @@ overflow-y: scroll;
     color: #000;
 }
 
-.back_img{
-    background-image: url('../../web_img/fea-7.png');
+.home_back_img{
+    /* background-image: url('../../web_img/fea-7.png'); */
+    background-image: url('https://static.vecteezy.com/system/resources/previews/003/577/919/large_2x/floral-seamless-pattern-flower-background-floral-seamless-texture-with-flowers-flourish-tiled-white-spring-wallpaper-vector.jpg');
+    background-size: 12%;
+    background-repeat: repeat-x;
 }
 
 .trend-sec-box {
@@ -315,7 +318,7 @@ a {
 
 .logo-top img {
     width: 200px;
-    height: 60px;
+    height: 75px;
 }
 
 .bg-1 {
@@ -337,32 +340,49 @@ a {
     justify-content: center;
 }
 
+.banner_content h1{
+   font-size: 62px;
+   font-family: 'Berkshire Swash', cursive;
+   font-weight: 600;
+}
+.banner_content h1 span{
+    color: #99ca3c;
+  
+ }
+
 .banner_content h2{
-    font-family: Open Sans;
-    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    /* font-weight: 400;
     letter-spacing: 0em;
-    text-align: left;
+    text-align: left; */
 }
 
-.content h1{
+.banner_content h2 span{
+ display: block;
+ margin-left: 200px;
+}
+
+
+
+/* .content h1{
     font-style: italic;
     font-weight: 600;
     letter-spacing: 0em;
     text-align: left;
-}
-.content h4{
+} */
+/* .content h4{
     font-style: italic;
     font-weight: 400;
     line-height: 33px;
     letter-spacing: 0em;
     text-align: center;
-}
+} */
 
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) {
     .banner_content h2{
         width: 90%;
     }
-}
+} */
 
 @media only screen and (max-width: 1200px) {
     .trend-sec-box {
@@ -426,8 +446,14 @@ a {
 }
 
 #banner{
-    min-height: 80vh;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
     /* background-color: red; */
+    background-image: url('https://www.pngplay.com/wp-content/uploads/12/Microphone-PNG-Photos.png');
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: 50%;
 }
 
 .banner-img{
@@ -442,18 +468,18 @@ border-radius: 50%;
     /* font-size: 40px; */
 }
 
-.clr-1{
+/* .clr-1{
     color: #CB58AB;
 }
 
 .pd-0{
     padding: 0;
-}
+} */
 
-.ff-1{
+/* .ff-1{
     font-family: caramel;
     font-style: italic;
-}
+} */
 
 #tbd{
     padding: 80px 40px;
@@ -479,19 +505,19 @@ border-radius: 50%;
     margin: 10px;
 }
 
-.circles img{
+/* .circles img{
     border-radius: 50%;
     height: 100%;
     width: 100%;
-}
+} */
 
-.pd-0{
+/* .pd-0{
     padding: 0;
     margin: 0;
 }
-
+*/
 .fea-img{
-    height: 380px;
+    max-width: 380px;
 }
 
 .modal_header{
@@ -541,8 +567,13 @@ border-radius: 50%;
 
 .pro_img img{
     height: 50px;
-    width: 50px;
+    width: 50px !important;
     border-radius: 50%;
+}
+
+.online-Profile img{
+    width: 35px !important;
+    height: 35px !important;
 }
 
 .profile_part{
@@ -640,4 +671,44 @@ border-radius: 50%;
 }
 .gallery-img{
     width: 240px !important;
+}
+
+#features h1{
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 62px;
+    position: relative;
+    /* color: #99ca3c; */
+}
+
+.features_propraty h2{
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 62px;
+    color: #99ca3c;
+}
+.features_propraty h4{
+    /* font-size: 62px; */
+    font-family: 'Open Sans', sans-serif;
+}
+.add_comment{
+    border-top: 1px solid #0001;
+    align-items: center;
+    min-height: 40px;
+    padding-top: 5px;
+}
+.comment{
+    width: 100%;
+    padding: 5px 15px;
+    border: none;
+}
+
+.comment:focus{
+    outline: none;
+}
+.commentPost{
+    color: rgb(62, 199, 218);
+    cursor: pointer;
+}
+
+.view_name{
+    font-weight: 600;
 }

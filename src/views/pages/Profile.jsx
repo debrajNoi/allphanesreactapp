@@ -79,6 +79,7 @@ function Profile() {
 		.then((response) => {
             setPostDesc('')
             getAllPosts(getPosts)
+            
 		})
 		.catch(err => {
 		    console.log('error=>',err)
@@ -180,23 +181,41 @@ useEffect(() => {
                                     </div>                                   
                                 </Link>
                             </div>
+
                             {item.postImage && <img src={item.postImage} alt="posts" />}
                             <div className="view-post-des mt-2">
                                 {item.postDescription && item.postDescription}
                             </div>
-                            <div className='post-action-sec d-flex gap-2'>
+                            
+                            <div className='mt-3 post-action-sec d-flex gap-2'>
                                 {likeToggle === true ? (
                                     <div className="like" onClick={() => handleLikeClick(item._id, item.user_info[0]._id)}>
                                         <FontAwesomeIcon icon={faHeart} style={{color : "red"}}></FontAwesomeIcon> 
-                                    </div>
-                                ):(<div className="like" onClick={() => handleLikeClick(item._id, item.user_info[0]._id)}>
-                                <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon> 
-                            </div>)}
-                                    
+                                    </div>)
+                                    :(<div className="like" onClick={() => handleLikeClick(item._id, item.user_info[0]._id)}>
+                                        <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon> 
+                                    </div>)
+                                }  
                                 
-                                {/* <div className="comment" onClick={handleLikeClick}>
+                                <div className="commentx" onClick={handleLikeClick}>
                                     <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
-                                </div> */}
+                                </div>
+
+                                <div className="commentx" onClick={handleLikeClick}>
+                                    <FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon>
+                                </div>
+                            </div>
+
+                            {/* {item.postImage && <img src={item.postImage} alt="posts" />}
+                            <div className="view-post-des mt-2">
+                                <span className='view_name'>{item.postDescription && item.user_info[0].firstName+ ' ' + item.user_info[0].lastName + ' : '} </span>{item.postDescription && item.postDescription}
+                            </div> */}
+
+                            <div className="mt-3 add_comment d-flex">
+                                <input type="text" name="comment" className="comment" placeholder='Add comment' />
+                                <div className="commentPost">
+                                    Post 
+                                </div>
                             </div>
 
                         </div>

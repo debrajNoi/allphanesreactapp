@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
-* {
-    font-family: Open Sans;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+
+/* * {
+    font-family: 'Open Sans', sans-serif;
+} */
 .index-header{
-    background: #F5FCFF;
-    color: #000;
-    height: 80px;
+    /* background: #fff; */
+    background-color: #2a2a2a;
+    height: 90px;
     display: flex;
     align-items: center;
     position: sticky;
@@ -17,10 +20,10 @@
     color: #000;
 }
 .index-header ul li a{
-    color: #000;
+    color: #fff;
 }
 .index-header ul li a:hover{
-    color: #000;
+    color: #fff;
 }
 
 /* .index-header a */
@@ -49,9 +52,9 @@
 }
 
 
-.nav-link{
+/* .nav-link{
     color: #000 !important;
-}
+} */
 
 .btn-signs{
  color: #fff !important;
@@ -64,17 +67,18 @@ border-radius: 20px;
 
 
 .footer-end{
-    background-color: #F5FCFF;
+    background-color: #333;
     padding: 15px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     border-top: 1px solid #0002;
+    color: #fff;
 }
 
 .f-links{
-    color: #000;
+    color: #fff;
 }
 .sign-out-btn{
     background-color: rgb(112, 184, 81);
@@ -90,7 +94,7 @@ border-radius: 20px;
 
 #footer{
     padding: 60px 80px;
-    /* background-color: #F5FCFF; */
+    background-color: #F5FCFF;
 }
 
 .social-img{

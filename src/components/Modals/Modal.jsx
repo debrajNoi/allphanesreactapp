@@ -78,10 +78,12 @@ function Modalx(props) {
     }
   };
 
-    const closeModal = e =>{
-      props.onHide()
-      return () => URL.revokeObjectURL(selectedFile)
-    }
+  const closeModal = () =>{
+    setFileInputState('');
+    setPreviewSource('');
+    setValues('')
+    props.onHide()
+  }
 
     return (
       <Modal
