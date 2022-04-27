@@ -52,12 +52,12 @@ function RequestList() {
                             <div className="members" key={index}>
                                 <div className="profile_part">
                                     <div className="pro_img">
-                                        {items.acceptorId.profilePhoto ? (<img src={items.acceptorId.profilePhoto} alt="members profile" />) 
+                                        {items.referenceUserId.profilePhoto ? (<img src={items.referenceUserId.profilePhoto} alt="members profile" />) 
                                         : (<img src={prof1} alt="members profile" />)}
                                         
                                     </div>
                                     <div className="pro_details">
-                                        <div className="pro_name">{items.acceptorId.firstName+' '+items.acceptorId.lastName}</div>
+                                        <div className="pro_name">{items.referenceUserId.firstName+' '+items.referenceUserId.lastName}</div>
                                     </div>
                                     {/* <div>{items._id}</div> */}
                                 </div>

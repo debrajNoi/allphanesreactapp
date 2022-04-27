@@ -79,7 +79,6 @@ function Profile() {
 		.then((response) => {
             setPostDesc('')
             getAllPosts(getPosts)
-            
 		})
 		.catch(err => {
 		    console.log('error=>',err)
