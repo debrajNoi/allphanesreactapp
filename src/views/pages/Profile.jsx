@@ -18,6 +18,7 @@ const createPost = config.url.API_URL+'posts/create'
 const likePost = config.url.API_URL+'social/like'
 const getPosts = config.url.API_URL+'posts/'
 const getUserUrl = config.url.API_URL+'users/'
+const getLikeUrl = config.url.API_URL+'social/likeview'
 
 function Profile() {
     const [postdesc, setPostDesc] = useState()
@@ -26,13 +27,15 @@ function Profile() {
     const [modalShow, setModalShow] = useState(false)
     const [modalShow1, setModalShow1] = useState(false)
     const [modalShow2, setModalShow2] = useState(false)
+    const [likeToggle, setLikeToggle] = useState(false)
+    const [like, setLike] = useState([])
 
     const token = localStorage.getItem("token")
     
-    const getAllPosts = async url => {
-        const response = await fetch(url)
-        const data = await response.json()
-        setPosts(await data.view)
+    const getAllPosts = async () => {
+        const response = await axios.get(getPosts)
+        console.log("res=>",response)
+        setPosts(await response.data.view)
     }
 
     const getSingleUser = async e => {
@@ -41,24 +44,30 @@ function Profile() {
         setSingleUser(await response.data.responseData)
     }
 
+    const getLikes = async e =>{
+        const response = await axios.get(getLikeUrl)
+        setLike(response.data.view)
+        console.log("like",response)
+    }
+
     const handleLikeClick = async (postId, userId) =>{
         console.log("click>>")
         const dataPost = await axios.post(likePost, {
             referenceUserId:userId,
             referencePostId:postId,
-            // isLike:true
         })
         if(dataPost){
+            // setLike(dataPost)
+            // setLikeToggle(true)
             console.log(dataPost)
         }
-        // console.log("event>>", postId + userId)
     }
 
     const handleChange = e => {
         setPostDesc(e.target.value)
     }
 
-    const handleSubmit = async e =>{
+    const handleSubmit = e =>{
         e.preventDefault()
         const id = localStorage.getItem('token')
         let data = {
@@ -66,19 +75,21 @@ function Profile() {
             'postTitle' : 'testing',
             'postDescription' : postdesc
         }
-        await axios.post(createPost,data)
+        axios.post(createPost,data)
 		.then((response) => {
             setPostDesc('')
             getAllPosts(getPosts)
+            
 		})
 		.catch(err => {
 		    console.log('error=>',err)
 		})
     }
 
-    useEffect(() => {
+useEffect(() => {
         getAllPosts(getPosts)
         getSingleUser()
+        getLikes()
     },[])
   
     return (
@@ -175,9 +186,14 @@ function Profile() {
                                 {item.postDescription && item.postDescription}
                             </div>
                             <div className='post-action-sec d-flex gap-2'>
+                                {likeToggle === true ? (
                                     <div className="like" onClick={() => handleLikeClick(item._id, item.user_info[0]._id)}>
-                                        <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon> 
+                                        <FontAwesomeIcon icon={faHeart} style={{color : "red"}}></FontAwesomeIcon> 
                                     </div>
+                                ):(<div className="like" onClick={() => handleLikeClick(item._id, item.user_info[0]._id)}>
+                                <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon> 
+                            </div>)}
+                                    
                                 
                                 {/* <div className="comment" onClick={handleLikeClick}>
                                     <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
