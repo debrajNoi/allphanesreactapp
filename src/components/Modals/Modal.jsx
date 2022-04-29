@@ -17,11 +17,10 @@ function Modalx(props) {
   const [errMsg, setErrMsg] = useState('');
   const token = localStorage.getItem("token")
  
-  const getAllPosts = async url => {
-    const response = await fetch(url)
-    const data = await response.json()
-    props.posts(await data.view)
-    console.log('result => ', data.view)
+  const getAllPosts = async () => {
+    const response = await axios.get(getPosts + token)
+    console.log("res=>",response)
+    props.posts(await response.data.view)
 }
 
   const handleChange = e =>{
@@ -99,7 +98,7 @@ function Modalx(props) {
         <Modal.Body className="pd-0">
           <div className="row pd-0">
               <div className="col-lg-7 pd-0 post_img">
-                {previewSource &&  <img src={previewSource} alt="modal" /> }
+                {previewSource &&  <img src={previewSource} alt="modal" className="post_img_1" /> }
               </div>
               
               <form onSubmit={handleSubmitFile} className="col-lg-5" encType="multipart/formdata">

@@ -13,12 +13,12 @@ import {faCamera} from "@fortawesome/free-solid-svg-icons"
 import {faImage} from "@fortawesome/free-solid-svg-icons"
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons"
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import ReadMore from '../../components/Readmore'
 
 const createPost = config.url.API_URL+'posts/create'
 const likePost = config.url.API_URL+'social/like'
 const getPosts = config.url.API_URL+'posts/'
 const getUserUrl = config.url.API_URL+'users/'
-const getLikeUrl = config.url.API_URL+'social/likeview'
 
 function Profile() {
     const [postdesc, setPostDesc] = useState()
@@ -28,12 +28,13 @@ function Profile() {
     const [modalShow1, setModalShow1] = useState(false)
     const [modalShow2, setModalShow2] = useState(false)
     const [likeToggle, setLikeToggle] = useState(false)
-    const [like, setLike] = useState([])
+    // const [like, setLike] = useState([])
+    const [comment, setComment] = useState({})
 
     const token = localStorage.getItem("token")
     
     const getAllPosts = async () => {
-        const response = await axios.get(getPosts)
+        const response = await axios.get(getPosts + token)
         console.log("res=>",response)
         setPosts(await response.data.view)
     }
@@ -44,23 +45,37 @@ function Profile() {
         setSingleUser(await response.data.responseData)
     }
 
-    const getLikes = async e =>{
-        const response = await axios.get(getLikeUrl)
-        setLike(response.data.view)
-        console.log("like",response)
-    }
-
     const handleLikeClick = async (postId, userId) =>{
         console.log("click>>")
         const dataPost = await axios.post(likePost, {
-            referenceUserId:userId,
+            referenceUserId:token,
             referencePostId:postId,
         })
         if(dataPost){
-            // setLike(dataPost)
-            // setLikeToggle(true)
+            getAllPosts()
             console.log(dataPost)
         }
+    }
+
+    const handleCommentChange = e =>{
+        setComment(values => ({...values,[e.target.name]: e.target.value }))
+        console.log(comment)
+    }
+
+    const handleCommentClick = async (postId, userId, commentName) =>{
+        console.log("click comment>>",commentName,comment[commentName])
+        const dataArr = {
+            referenceUserId:userId,
+            referencePostId:postId,
+            messageText : comment[commentName]
+        }
+        console.log(dataArr)
+        // const dataPost = await axios.post(likePost, )
+        // if(dataPost){
+        //     // setLike(dataPost)
+        //     // setLikeToggle(true)
+        //     console.log(dataPost)
+        // }
     }
 
     const handleChange = e => {
@@ -79,17 +94,16 @@ function Profile() {
 		.then((response) => {
             setPostDesc('')
             getAllPosts(getPosts)
-            
 		})
 		.catch(err => {
 		    console.log('error=>',err)
 		})
     }
 
-useEffect(() => {
+    useEffect(() => {
         getAllPosts(getPosts)
         getSingleUser()
-        getLikes()
+
     },[])
   
     return (
@@ -119,21 +133,23 @@ useEffect(() => {
         <div className="middle-sec-box post-area my-3 p-4 profile-sec2">
         
             <div className="profile-photo2 profile-sec2 com-sec">
-            {singleUser.profilePhoto ? (<img className='sub-profile-pic' src={singleUser.profilePhoto} alt="profile" />) 
+                {singleUser.profilePhoto ? (<img className='sub-profile-pic' src={singleUser.profilePhoto} alt="profile" />) 
                 : (<img src={prof1} className='sub-profile-pic' alt="profile" />) }  
             
             </div>
             
-            <div className="post-text">
-                {/* <textarea name="postsText" >d</textarea> */}
-                <form action="" onSubmit={handleSubmit}>
-                    <textarea onChange={handleChange} value={postdesc}  className='comment-area' required></textarea>
-                    <button type='submit' className='btn btn-primary mb-3 mx-1'><FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon></button>
-                    <button type='button' className='btn btn-secondary mb-3 ml-5 mx-1' onClick={() => setModalShow(true)}>
-                        <FontAwesomeIcon icon={faImage}></FontAwesomeIcon>
-                    </button>
-                    {/* profile button was here  */}
-                    {/* cover button was here  */}
+            <div className="post-text po_text">
+                <form onSubmit={handleSubmit} className="post_form">
+                    <textarea placeholder='Share your ideas' onChange={handleChange} value={postdesc}  className='comment-area' required></textarea>
+                    <div className="post_action">
+                        
+                        <button type='button' className='btn' onClick={() => setModalShow(true)}>
+                            Photo <FontAwesomeIcon icon={faImage}></FontAwesomeIcon>
+                        </button>
+                        <button type='submit' className='btn'>
+                            Post
+                        </button>
+                    </div>
                 </form>
                 
         
@@ -141,7 +157,7 @@ useEffect(() => {
                     show={modalShow}
                     onHide={() => setModalShow(false)} 
                     backdrop="static" 
-                    refId ={token}
+                    // refId ={token}
                     postFunc = {getAllPosts}
                     posts = {setPosts}
                 />
@@ -182,38 +198,48 @@ useEffect(() => {
                                 </Link>
                             </div>
 
-                            {item.postImage && <img src={item.postImage} alt="posts" />}
-                            <div className="view-post-des mt-2">
-                                {item.postDescription && item.postDescription}
-                            </div>
+                            {item.postInfo[0] && <img src={item.postInfo[0].postImagePath} alt="posts" className="post_img_1" />}
                             
-                            <div className='mt-3 post-action-sec d-flex gap-2'>
-                                {likeToggle === true ? (
-                                    <div className="like" onClick={() => handleLikeClick(item._id, item.user_info[0]._id)}>
-                                        <FontAwesomeIcon icon={faHeart} style={{color : "red"}}></FontAwesomeIcon> 
+                            {!item.postInfo[0] && (
+                                <pre className='mt-4'>
+                                    <ReadMore className="view-post-des mt-2">
+                                        {item.postDescription && item.postDescription}
+                                    </ReadMore>
+                                </pre>
+                            )}
+                            
+                            
+                            <div className='mt-3 post-action-sec d-flex gap-3'>
+                                {item.isLiked[0] ? (
+                                    <div className="like commentx" onClick={() => handleLikeClick(item._id)}>
+                                        <FontAwesomeIcon icon={faHeart} className="post_icons" style={{color : "red"}}></FontAwesomeIcon> 
                                     </div>)
-                                    :(<div className="like" onClick={() => handleLikeClick(item._id, item.user_info[0]._id)}>
-                                        <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon> 
+                                    :(<div className="like commentx" onClick={() => handleLikeClick(item._id)}>
+                                        <FontAwesomeIcon icon={faHeart} className="post_icons"></FontAwesomeIcon> 
                                     </div>)
                                 }  
                                 
-                                <div className="commentx" onClick={handleLikeClick}>
-                                    <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
+                                <div className="commentx">
+                                    <FontAwesomeIcon icon={faComment} className="post_icons"></FontAwesomeIcon>
                                 </div>
 
-                                <div className="commentx" onClick={handleLikeClick}>
-                                    <FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon>
+                                <div className="commentx">
+                                    <FontAwesomeIcon icon={faPaperPlane} className="post_icons"></FontAwesomeIcon>
                                 </div>
+                                
+                            </div>
+                            <div className="likes_count">
+                                {item.totalLikes && item.totalLikes} Likes
                             </div>
 
-                            {/* {item.postImage && <img src={item.postImage} alt="posts" />}
-                            <div className="view-post-des mt-2">
-                                <span className='view_name'>{item.postDescription && item.user_info[0].firstName+ ' ' + item.user_info[0].lastName + ' : '} </span>{item.postDescription && item.postDescription}
-                            </div> */}
+                            {item.postInfo[0] && item.postDescription && (<ReadMore className="view-post-des mt-3">
+                                <span className='view_name'>{item.postDescription && item.user_info[0].firstName+ ' ' + item.user_info[0].lastName + ' : '} </span><pre>{item.postDescription && item.postDescription}</pre>
+                            </ReadMore>)}
+                            
 
                             <div className="mt-3 add_comment d-flex">
-                                <input type="text" name="comment" className="comment" placeholder='Add comment' />
-                                <div className="commentPost">
+                                <input type="text" name={'comment' + index} onChange={handleCommentChange} className="comment" placeholder='Add comment' />
+                                <div className="commentPost" onClick={() => handleCommentClick(item._id, item.user_info[0]._id, 'comment'+index)}>
                                     Post 
                                 </div>
                             </div>
@@ -231,3 +257,5 @@ useEffect(() => {
 }
 
 export default Profile
+
+

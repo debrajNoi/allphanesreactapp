@@ -30,7 +30,7 @@ function LeftNavbar(props) {
             <div className="left-sec-con"><Link to="/request-list">Friend Requests</Link></div>                                
             <div className="left-sec-con"><Link to="/sent-list">Sent Requests</Link></div>                                
             <div className="left-sec-con"><Link to="/friends-list">Friends List</Link></div>
-            <div className="left-sec-con"><Link to="/gellary-list">Gallery List</Link></div>                                
+            <div className="left-sec-con"><Link to="/photo-gellary">Photo Gellary</Link></div>                                
          </div>
          <div className="online-component">
             <div className="online-title">

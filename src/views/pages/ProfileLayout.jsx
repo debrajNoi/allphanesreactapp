@@ -14,11 +14,11 @@ export default function ProfileLayout() {
             {/* <div className='navbar'>Nav bar</div> */}
             <div className='container-fluid'>
                 <div className='row'>
-                    <div className="col-lg-2 col-md-3 left-bar-sec">
+                    <div className="col-lg-3 col-md-3 left-bar-sec">
                        <LeftNavbar /> 
                     </div>
                     {/* Middle section  */}
-                    <div className="col-lg-6 col-md-6">
+                    <div className="col-lg-5 col-md-6">
                         <Profile />
                     </div>
                     <div className="col-lg-4 col-md-3">

@@ -50,11 +50,12 @@ function RightBar() {
                         description
                     </div>
                     <div className="trend-tags mt-3">
-                    <div className="trend-tag"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
-                    <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
-                    <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
-                    <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
-                    <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
+                    <div className="trend-tag">
+                        <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
                     </div>
                         <div className="trend-tag">Share <FontAwesomeIcon icon={faShare}></FontAwesomeIcon></div>
                     </div>

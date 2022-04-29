@@ -4,7 +4,7 @@ import LeftNavbar from '../../components/Navbars/LeftNavbar'
 import RightBar from '../../components/Navbars/RightBar'
 import axios from "axios"
 
-const getDataUrl = config.url.API_URL + 'services/gellary/'
+const getDataUrl = config.url.API_URL + 'posts/gellary/'
 
 function Gellary() {
 
@@ -26,20 +26,20 @@ function Gellary() {
         <div>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-lg-2 col-md-3">
+                    <div className="col-lg-3 col-md-3">
                         <LeftNavbar />
                     </div>
-                    <div className="col-lg-6 col-md-6 shadow-sm members-sec">
-                        <h4 className='my-4'>Image Gallery</h4>
-                        <div className="gallery-sec">
+                    <div className="col-lg-5 col-md-6 shadow-sm members-sec">
+                        <h4 className='my-4'>Photo Gallery</h4>
+                        <div className="gallery-item">
                         {
-                            gellarys.map((item) => {
+                            gellarys.map((item, index) => {
                                 return (
                                     
                                     
-                                        <div className="gallery-item">
-                                            <img className="gallery-img" src={item.postImage} style={{ height: "300px" }} />
-                                        </div>
+                                        // <div className="gallery-item" key={index}>
+                                            <img className="gallery-img" key={index} src={item.postImagePath} />
+                                        // </div>
                                     
 
                                 )

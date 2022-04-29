@@ -30,24 +30,67 @@ function Home() {
             </div></div>
         </section>
 
-        <section id="features" className='container-fluid home_back_img'>
+        <section id="features" className='container-fluid'>
+        <div className='text-center home_back_img'> 
+            <div className='container'>
+                <h1 className='py-5 pb-5'>Welcome to the community of creators and those who support them !!</h1>
+            </div> 
+        </div>
           
-                <h1 className='text-center pt-5 mb-5'>Our Features</h1>
+              
+
+<div className='container features_propraty pt-5'>
+{/* 
+<h3 className='text-center pt-5 mb-5'>Welcome to the community of creators and those who support them !!</h3> */}
+<p>Find great content in art, music, writing, photos, videos and much more</p>
+<p>Connect with creators as they work to bring their work into the world</p>
+<p>Support the celebrities you follow</p>
+<p>Show your interest and talent and win awards and fans</p>
+<p>Join a vibrant and growing community where there are many ways to be rewarded
+</p>
+
+</div>
+
 
 <div className='container features_propraty'>
                 <div className="row">
-                    <div className="col-lg-8 col-md-6">
+                    <div className="col-lg-12 col-md-12">
                         <div className="center-item">
-                            <div className='px-4 content'>
+                            <div className=' content pt-5'>
                                 <h2>Subscription</h2>
-                                <h4>Run your own Subscription services on your own terms and start making Big cash every month</h4>
+                                <h4> is free. Please join to see the world we are creating !!</h4>
+                                <p>
+
+                                Click this for following content: “Find great content in art, music, writing, photos, videos and much more”
+Allphanes content is about some of the best creations of our community. Creations that will give something to the world that outlast us. Great writing, photos, art, videos, and much more. Expressions of human talent at its best. 
+Click this for following content: “Connect with creators as they work to bring their work into the world”</p>
+
+
+<p>
+Creators do not work in isolation. They are most fulfilled when the work they create is appreciated. In this community the fans and the artists find and encourage and support each other. Some creators may allow their friends and fans to join them in creation. Perhaps some of your inputs and ideas will be part of the next great hit of these artists.
+Click this for following content: “Support the celebrities you follow”</p>
+<img src="https://www.yamaha.com/en/musical_instrument_guide/common/images/piano/parts_viewer01.jpg" alt="banner" className='fea-img float-end m-4'  />   
+<p>
+The artists and people whose work you enjoy, love your appreciation. On Allphanes you can do more by subscribing to their work to get access to exclusive contents and events. 
+Click this for following content: “Show your interest and talent and win awards and fans”</p>
+
+<p>All subscribers to Allphanes can participate in contests where you can showcase your creations and be reviewed by the community. You could be a winner and get great recognition from this community.
+Click this for following content: “Join a vibrant and growing community where there are many ways to be rewarded”</p>
+<h5>Allphanes provides many ways to be compensated for you hard work as creator. </h5>
+<ul>
+<li>You could add your content to the Premium space, where you will be rewarded based on number of views. </li>
+<li>You could start a subscription service where your fans may subscribe to get more exclusive access to you and your exclusive content.</li>
+<li>You could also team with other creators to provide this subscription access and more value for your fans. </li>
+<li>Finally, there are the contests where you will have the opportunity to win prizes !!</li>
+</ul>
+
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-4 col-md-6 pt-5">
-                        {/* <img src={fea1} alt="banner" className='fea-img'  />   */}
+                    {/* <div className="col-lg-4 col-md-6 pt-5">
+                        <img src={fea1} alt="banner" className='fea-img'  />  
                         <img src="https://www.yamaha.com/en/musical_instrument_guide/common/images/piano/parts_viewer01.jpg" alt="banner" className='fea-img'  />   
-                    </div>
+                    </div> */}
                 </div>
                 </div>
                 <div className='container features_propraty'>             

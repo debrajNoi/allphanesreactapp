@@ -48,7 +48,7 @@ ReactDOM.render(
         <Route path="request-list" element={<RequestList />} />
         <Route path="sent-list" element={<SendingList />} />
         <Route path="friends-list" element={<FriendsList />} />
-        <Route path="gellary-list" element={<Gellarys />} />
+        <Route path="photo-gellary" element={<Gellarys />} />
         <Route path="user-profile/:id" element={<UserProfile />} />
 
       </Route>
