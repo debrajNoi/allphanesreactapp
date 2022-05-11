@@ -18,10 +18,10 @@ export default function ProfileLayout() {
                        <LeftNavbar /> 
                     </div>
                     {/* Middle section  */}
-                    <div className="col-lg-5 col-md-6">
+                    <div className="col-lg-5 col-md-6 bg_allp">
                         <Profile />
                     </div>
-                    <div className="col-lg-4 col-md-3">
+                    <div className="col-lg-4 col-md-3 bg_allp">
                         <RightBar />
                     </div>
                 </div>

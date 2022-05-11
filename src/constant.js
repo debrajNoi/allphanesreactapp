@@ -1,10 +1,9 @@
 // Constants.js
 const prod = {
  url: {
-  API_URL: 'https://allphanesusernode.herokuapp.com/api/'
+  API_URL: 'https://powerful-shelf-35750.herokuapp.com/api/'
  }
 }
-
 
 
 const dev = {

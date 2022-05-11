@@ -1,31 +1,22 @@
 import React,{ useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import profilePhoto1 from '../../assets/web_img/choto_logo_1.png'
 
 import axios from "axios"
 import { config } from '../../constant.js'
+import Online from "../Online"
 
 const onlineURL = config.url.API_URL+'users/online'
+// const getData = config.url.API_URL+'services/friendslists/'
 
 function LeftNavbar(props) {	
-   const [onlineUsers, setOnlineUsers] = useState([])
+   const [members, setMembers] = useState([])
    const token = localStorage.getItem('token')
-
-   const getOnlineUsers = async () =>{
-      const response = await axios.get(onlineURL)
-      console.log(response)
-      setOnlineUsers(await response.data.responseData)
-   }  
-   
-   useEffect(() => {
-      getOnlineUsers()
-  },[])
 
 	return (
 		<section id="leftBar">
          <div className="left-sec-1">
-            <div className="left-sec-con"><Link to="/profile">Events</Link></div>
-            <div className="left-sec-con"><Link to={"/user-profile/" + token}>My Space</Link></div>                                
+            {/* <div className="left-sec-con"><Link to="/mycanvas">Events</Link></div> */}
+            {/* <div className="left-sec-con"><Link to={"/myspace/" + token}>My Space</Link></div>                                 */}
             <div className="left-sec-con"><Link to="/members">Members</Link></div>
             <div className="left-sec-con"><Link to="/request-list">Friend Requests</Link></div>                                
             <div className="left-sec-con"><Link to="/sent-list">Sent Requests</Link></div>                                
@@ -38,16 +29,7 @@ function LeftNavbar(props) {
             </div>
             {/* loop  */}
             
-               {onlineUsers && onlineUsers.map((user, index) => {
-                  return (
-                     <Link to="/profile" className="online-users" key={index}>
-                        <div className="online-Profile">
-                           <img src={user.profilePhoto ? user.profilePhoto : profilePhoto1} alt="profile not found" />
-                        </div> 
-                        <div className="online-name">{user.firstName+ ' ' + user.lastName}</div>
-                     </Link>
-                  )
-               })}
+               <Online />
 
             {/* end loop  */}
             

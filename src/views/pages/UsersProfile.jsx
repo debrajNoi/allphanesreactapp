@@ -3,9 +3,8 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 
 import axios from "axios"
 import { config } from '../../constant'
-import Modalx from '../../components/Modals/Modal'
-import Modaly from '../../components/Modals/Modaly'
-import Modalz from '../../components/Modals/Modalz'
+import RightBar from '../../components/Navbars/RightBar'
+import LeftNavbar from '../../components/Navbars/LeftNavbar'
 import prof1 from '../../assets/web_img/choto_logo_1.png'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faComment, faEdit} from "@fortawesome/free-solid-svg-icons"
@@ -14,36 +13,30 @@ import {faImage} from "@fortawesome/free-solid-svg-icons"
 import {faPaperPlane} from "@fortawesome/free-solid-svg-icons"
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import ReadMore from '../../components/Readmore'
-import RightBar from '../../components/Navbars/RightBar'
-import LeftNavbar from '../../components/Navbars/LeftNavbar'
 
-const createPost = config.url.API_URL+'posts/create'
-const likePost = config.url.API_URL+'social/like'
-const getPosts = config.url.API_URL+'posts/myspace/'
+// const createPost = config.url.API_URL+'posts/create'
+const getPosts = config.url.API_URL+'posts/userspace/'
 const getUserUrl = config.url.API_URL+'users/'
+const likePost = config.url.API_URL+'social/like'
 const commentPost = config.url.API_URL+'social/comments'
 
-
-function UserProfile(props) {
+function UsersProfile(props) {
     const params = useParams();
-    console.log(params)
-    const [postdesc, setPostDesc] = useState('')
     const [posts, setPosts] = useState([])
     const [singleUser, setSingleUser] = useState([])
-    const [modalShow, setModalShow] = useState(false)
-    const [modalShow1, setModalShow1] = useState(false)
-    const [modalShow2, setModalShow2] = useState(false)
     const [comment, setComment] = useState({})
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token")
+
+    
 
     const getAllPosts = async () => {
-        const response = await axios.get(getPosts + params.id)
+        const response = await axios.get(getPosts + token + '/' +params.id)
         console.log("res=>",response)
         setPosts(await response.data.view)
     }
 
     const getSingleUser = async e => {
-        const url = getUserUrl + token
+        const url = getUserUrl + params.id
         const response = await axios.get(url)
         setSingleUser(await response.data.responseData)
     }
@@ -52,7 +45,7 @@ function UserProfile(props) {
         console.log("click>>")
         const dataPost = await axios.post(likePost, {
             referenceUserId:token,
-            referencePostId:postId,
+            referencePostId:postId, 
         })
         if(dataPost){
             getAllPosts()
@@ -80,33 +73,15 @@ function UserProfile(props) {
         }
     }
 
-    const handleChange = e => {
-        setPostDesc(e.target.value)
-    }
-
-    const handleSubmit = e =>{
-        e.preventDefault()
-        const id = localStorage.getItem('token')
-        let data = {
-            'referenceUserId' : id,
-            'postTitle' : 'testing',
-            'postDescription' : postdesc
-        }
-        axios.post(createPost,data)
-		.then((response) => {
-            setPostDesc('')
-            getAllPosts(getPosts)
-		})
-		.catch(err => {
-		    console.log('error=>',err)
-		})
-    }
-
     useEffect(() => {
-        getAllPosts(getPosts)
+        getAllPosts()
         getSingleUser()
-
     },[])
+
+    // if(params.id === token){
+    //     console.log("kk");
+    //     return <Navigate to={"/user-profile/" + token} />
+    // }
 
     
   
@@ -120,64 +95,15 @@ function UserProfile(props) {
                     <div className="col-lg-5 col-md-6 bg_allp">
                     <section id="profile">
 
-                    <div className="middle-sec-box cover-photo my-3 p-1 cover-sec" style={{backgroundImage: `url(${singleUser.coverPhoto})`}}>
-                        <button type='button' className='btn btn-secondary mb-3 ml-5 mx-1 cover-btn' onClick={() => setModalShow2(true)}>
-                                    <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
-                                </button>
-                        <div className="profile-photo2 profile-sec2 profile-photo">
-                        <button type='button' className='btn btn-secondary mb-3 ml-5 mx-1 profile-btn' onClick={() => setModalShow1(true)}>
-                                    <FontAwesomeIcon icon={faCamera} className="shadow"></FontAwesomeIcon>
-                                </button>
-                            {singleUser.profilePhoto ? (<img src={singleUser.profilePhoto} alt="profile" />) 
-                            : (<img src={prof1} alt="profile" />) }                                    
-                        </div>
-                        <div className="cover-content"></div>
-                    </div>
+                        <div className="middle-sec-box cover-photo my-3 p-1 cover-sec" style={{backgroundImage: `url(${singleUser.coverPhoto? singleUser.coverPhoto : ''})`}}>
+                            <div className="profile-photo profile-sec profile-photo2">
+                                {singleUser.profilePhoto ?
+                                (<img src={singleUser.profilePhoto} alt="profile" />)
+                            : (<img src={prof1} alt="profile" />)}  
 
-                        {/* create post section  */}
-                    <div className="middle-sec-box post-area my-3 p-4 profile-sec2">
-                    
-                    <div className="profile-photo2 profile-sec2 com-sec">
-                        {singleUser.profilePhoto ? (<img className='sub-profile-pic' src={singleUser.profilePhoto} alt="profile" />) 
-                        : (<img src={prof1} className='sub-profile-pic' alt="profile" />) }  
-                    </div>
-                    
-                    <div className="post-text po_text">
-                        <form onSubmit={handleSubmit} className="post_form">
-                            <textarea placeholder='Share your ideas' onChange={handleChange} value={postdesc}  className='comment-area' required></textarea>
-                            <div className="post_action">
-                                <button type='button' className='btn' onClick={() => setModalShow(true)}>
-                                    Photo <FontAwesomeIcon icon={faImage}></FontAwesomeIcon>
-                                </button>
-                                <button type='submit' className='btn'>
-                                    Post
-                                </button>
                             </div>
-                        </form>
-
-                        <Modalx
-                            show={modalShow}
-                            onHide={() => setModalShow(false)} 
-                            backdrop="static" 
-                            postFunc = {getAllPosts}
-                            posts = {setPosts}
-                        />
-
-                        <Modaly
-                            show={modalShow1}
-                            onHide={() => setModalShow1(false)} 
-                            backdrop="static" 
-                            posts = {setSingleUser}
-                        />
-
-                        <Modalz
-                            show={modalShow2}
-                            onHide={() => setModalShow2(false)} 
-                            backdrop="static" 
-                            posts = {setSingleUser}
-                        /> 
-                    </div>
-                </div>
+                            <div className="cover-content"></div>
+                        </div>
 
 {/* view post section */}
 <div className="post-area-section mb-5">
@@ -186,7 +112,7 @@ function UserProfile(props) {
                     return (
                         <div className="view-post pb-3 mt-3" key={index}>
                             <div className="post-creator px_15">
-                                <div className="posted-user">
+                                <div to={"/user-profile/"+ item.user_info[0]._id} className="posted-user">
                                     <div className='posted-user-d'>
                                     <div className="pro_img">
                                         {item.user_info[0].profilePhoto ? (<img src={item.user_info[0].profilePhoto} alt="members profile" />) 
@@ -289,4 +215,4 @@ function UserProfile(props) {
   )
 }
 
-export default UserProfile
+export default UsersProfile

@@ -47,10 +47,11 @@ function Members() {
     <div>
         <div className="container-fluid">
             <div className="row">
-                <div className="col-lg-2 col-md-3">
+                <div className="col-lg-3 col-md-3">
                     <LeftNavbar />
                 </div>
-                <div className="col-lg-6 col-md-6 shadow-sm members-sec">
+                <div className="col-lg-5 bg_allp col-md-6">
+                    <div className="bg-white members-sec p-2">
                     <h4 className='my-4'>Members</h4>
                     {members && members.map((items, index)=>{
                         console.log('items=>', items)
@@ -70,13 +71,14 @@ function Members() {
                                 <div className="btn-divs">
                                 {/* className="left_part btn btn-success add-btn" */}
                                     <div className="left_part btn btn-success add-btn"  id={items.id} onClick={handleClick}>Add Friend</div>
-                                    <Link className="left_part btn btn-success add-btn" to={'/user-profile/' + items.id}>See Profile</Link>
+                                    <Link className="left_part btn btn-success add-btn" to={'/profiles/' + items.id}>See Profile</Link>
                                 </div>
                             </div>
                         )
                     })}
+                    </div>
                 </div>
-                <div className="col-lg-4 col-md-3">
+                <div className="col-lg-4 col-md-3 bg_allp">
                     <RightBar />
                 </div>
             </div>

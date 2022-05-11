@@ -8,18 +8,17 @@ const getDataUrl = config.url.API_URL + 'posts/gellary/'
 
 function Gellary() {
 
-    const [gellarys, setgellary] = useState([])
-    console.log('chupkor', gellarys)
+    const [gellarys, setGellary] = useState([])
     const token = localStorage.getItem('token')
-    const gellarylist = async () => {
+    
+    const getGellarylist = async () => {
         const response = await axios.get(getDataUrl + token)
-        console.log('kk>>', response)
-        setgellary(await response.data.view)
-        
+        console.log("kk>>>",response)
+        setGellary(await response.data.view)
     }
 
     useEffect(() => {
-        gellarylist();
+        getGellarylist();
     }, [])
 
     return (
@@ -29,7 +28,7 @@ function Gellary() {
                     <div className="col-lg-3 col-md-3">
                         <LeftNavbar />
                     </div>
-                    <div className="col-lg-5 col-md-6 shadow-sm members-sec">
+                    <div className="col-lg-5 col-md-6 members-sec">
                         <h4 className='my-4'>Photo Gallery</h4>
                         <div className="gallery-item">
                         {

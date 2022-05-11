@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
-import logo from '../../assets/web_img/main_logo.f97d77789a0c57293d80.png'
+import logo from '../../assets/web_img/main_logo.png'
 import axios from "axios"
 import { config } from '../../constant'
 
@@ -40,7 +40,7 @@ function IndexNavbar() {
 					{/* <div className=""> */}
 						<ul className={isActive ? 'nav-middle active': 'nav-middle'}>
 							<li className="nav-item"> <Link className="nav-link" to="/home">Home</Link> </li>
-							{tokens && <li className="nav-item"><Link className="nav-link" to="/profile">My Canvas</Link></li>}
+							{tokens && <li className="nav-item"><Link className="nav-link" to="/mycanvas">My Canvas</Link></li>}
 							<li className="nav-item"><Link className="nav-link" to="/plan">Plan & Pricing</Link></li>
 							<li className="nav-item"><Link className="nav-link" to="/support">Support</Link></li>
 							{!tokens && <li className="nav-item"><Link className="nav-link" to="auth/login">Sign in</Link></li>}

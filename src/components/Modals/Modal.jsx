@@ -1,27 +1,17 @@
 import React,{useState, useEffect} from "react";
 import {Modal, Button} from 'react-bootstrap'
-import images from '../../assets/web_img/bg1.webp'
 
 import axios from "axios"
 import { config } from '../../constant'
 
 const createPost = config.url.API_URL+'posts/creategallery'
-const getPosts = config.url.API_URL+'posts/'
 
 function Modalx(props) {
   const [fileInputState, setFileInputState] = useState('');
   const [previewSource, setPreviewSource] = useState('');
   const [selectedFile, setSelectedFile] = useState();
-  const [successMsg, setSuccessMsg] = useState('');
   const [values, setValues] = useState('')
-  const [errMsg, setErrMsg] = useState('');
-  const token = localStorage.getItem("token")
- 
-  const getAllPosts = async () => {
-    const response = await axios.get(getPosts + token)
-    console.log("res=>",response)
-    props.posts(await response.data.view)
-}
+  const token = localStorage.getItem("token") 
 
   const handleChange = e =>{
     setValues(e.target.value)
@@ -54,7 +44,7 @@ function Modalx(props) {
       };
       reader.onerror = () => {
           console.error('AHHHHHHHH!!');
-          setErrMsg('something went wrong!');
+          // setErrMsg('something went wrong!');
       };
   };
 
@@ -69,11 +59,11 @@ function Modalx(props) {
       setFileInputState('');
       setPreviewSource('');
       setValues('')
-      getAllPosts(getPosts)
+      props.postFunc()
       props.onHide()
     } catch (err) {
         console.error(err);
-        setErrMsg('Something went wrong!');
+        // setErrMsg('Something went wrong!');
     }
   };
 

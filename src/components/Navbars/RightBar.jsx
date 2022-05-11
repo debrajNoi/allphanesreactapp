@@ -3,6 +3,7 @@ import Youtube from '../../assets/web_img/choto-log-img.jpg'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faShare} from "@fortawesome/free-solid-svg-icons"
 import {faStar} from "@fortawesome/free-solid-svg-icons";
+import video from "../../assets/videos/little-puspa.mp4";
 
 
 function RightBar() {
@@ -19,15 +20,18 @@ function RightBar() {
             <div className="trend-sec-box">
                 <div className="trend-video">
                     
-                <img src={Youtube} alt="profile" />
+                <video className='video-box' controls>
+                    <source src={video} type="video/mp4"/>
+                </video>
 
                 </div>
-                <div className="trend-des w-100">
+                <div className="trend-des">
+                    <div className='description-title'>2.5 years old little Pushpa</div>
                     <div className="trend-video-description">
-                        description
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus corporis vitae facilis animi deserunt iusto cum aliquam consectetur delectus laboriosam! 
                     </div>
                     <div className="trend-tags mt-3 trends-tag">
-                    <div className="trend-tag"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
+                    <div className="trend-tag trends-tag-1"><FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
                     <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
                     <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>
                     <FontAwesomeIcon icon={faStar}></FontAwesomeIcon>

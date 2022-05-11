@@ -28,7 +28,7 @@ export default function Login(props) {
                 console.log(response)
 				const tokens = response.data.responseData.id
 				localStorage.setItem('token', tokens)
-                navigate("/profile")
+                navigate("/mycanvas")
 			}else{
 				setErrMsg(response.data.message) 
                 console.log('errmsg =>',errmsg)

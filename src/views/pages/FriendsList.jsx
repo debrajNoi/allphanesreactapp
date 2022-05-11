@@ -17,7 +17,13 @@ function FriendsList() {
 
     const getFriendsList = async () => {
         const response = await axios.get(getData + token)
-        console.log(response)
+        console.log('response=>',response.data.responseData1)
+        const list = {
+            ...response.data.responseData1.acceptorId,
+            ...response.data.responseData2.referenceUserId
+        }
+
+        console.log('list =>',response)
         setMembers(await response.data.responseData1)
         setMembers2(await response.data.responseData2)
     }
@@ -39,10 +45,11 @@ function FriendsList() {
     <div>
         <div className="container-fluid">
             <div className="row">
-                <div className="col-lg-2 col-md-3">
+                <div className="col-lg-3 col-md-3">
                     <LeftNavbar />
                 </div>
-                <div className="col-lg-6 col-md-6 shadow-sm members-sec">
+
+                <div className="col-lg-5 col-md-6 shadow-sm members-sec">
                     <h4 className='my-4'>Friends</h4>
                     {members && members.map((items, index)=>{
                         console.log('items=>', items)
@@ -61,7 +68,7 @@ function FriendsList() {
                                 </div>
                                 <div className="btn-divs">
                                     <button className="left_part btn btn-primary unfriend-btn" id={items._id} onClick={handleClick}>unfriend</button>
-                                    <Link className="left_part btn btn-success add-btn" to={'/user-profile/' + items.referenceUserId.id}>See Profile</Link>
+                                    <Link className="left_part btn btn-success add-btn" to={'/profiles/' + items.referenceUserId.id}>See Profile</Link>
                                 </div>
                             </div>
                         )
@@ -82,7 +89,7 @@ function FriendsList() {
                                 </div>
                                 <div className="btn-divs">
                                     <button className="left_part btn btn-primary unfriend-btn" id={items._id} onClick={handleClick}>unfriend</button>
-                                    <Link className="left_part btn btn-success add-btn" to={'/user-profile/' + items.acceptorId.id}>See Profile</Link>
+                                    <Link className="left_part btn btn-success add-btn" to={'/profiles/' + items.acceptorId.id}>See Profile</Link>
                                 </div>
                             </div>
                         )

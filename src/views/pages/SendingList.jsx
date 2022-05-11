@@ -37,10 +37,10 @@ function SendingList() {
         <div>
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-lg-2 col-md-3">
+                    <div className="col-lg-3 col-md-3">
                         <LeftNavbar />
                     </div>
-                    <div className="col-lg-6 col-md-6 shadow-sm members-sec">
+                    <div className="col-lg-5 col-md-6 shadow-sm members-sec">
                         <h4 className='my-4'>Sent</h4>
                         {members && members.map((items, index)=>{
                             return(
